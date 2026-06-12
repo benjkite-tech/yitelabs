@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Yite Labs - Ben Kite</title>
+  <meta name="description" content="Ben Kite, Melbourne. Home for tinkering, ideas, work. And meeting new people."/>
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+
+  <!-- Social sharing -->
+  <meta property="og:title" content="Yite Labs - Ben Kite"/>
+  <meta property="og:description" content="Home for tinkering, ideas, work. And meeting new people."/>
+  <meta property="og:image" content="https://yitelabs.co/og-image.png"/>
+  <meta property="og:url" content="https://yitelabs.co"/>
+  <meta property="og:type" content="website"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="Yite Labs - Ben Kite"/>
+  <meta name="twitter:description" content="Home for tinkering, ideas, work. And meeting new people."/>
+  <meta name="twitter:image" content="https://yitelabs.co/og-image.png"/>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@300;400;500;600&family=Space+Mono:wght@400&display=swap" rel="stylesheet"/>
+  <style>
+
+    :root {
+      --ink:       #1C0F08;
+      --ground:    #FAF8F3;
+      --ground-2:  #F3EFE6;
+      --chalk:     #E4DDD0;
+      --ash:       #8A7260;
+      --ember:     #E8501A;
+      --moss:      #1A7A4A;
+      --denim:     #2D4FA8;
+      --lavender:  #7B5EA7;
+      --harvest:   #C8A830;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; }
+
+    body {
+      background: var(--ground);
+      color: var(--ink);
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── NAV ── */
+    nav {
+      background: var(--ground);
+      border-bottom: 0.5px solid var(--chalk);
+      padding: 0 3rem;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-shrink: 0;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .nav-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 20px;
+      letter-spacing: 0.08em;
+      color: var(--ink);
+      line-height: 1;
+    }
+    .nav-name span { color: var(--ember); }
+
+    /* ── TABS ── */
+    .tab-bar {
+      background: var(--ground);
+      border-bottom: 0.5px solid var(--chalk);
+      padding: 0 3rem;
+      display: flex;
+      align-items: center;
+      gap: 0;
+      flex-shrink: 0;
+    }
+
+    .tab {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ash);
+      padding: 14px 20px;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      transition: color 0.15s, border-color 0.15s;
+      white-space: nowrap;
+      user-select: none;
+    }
+
+    .tab:hover { color: var(--ink); }
+
+    .tab.active {
+      color: var(--ink);
+      border-bottom-color: var(--ink);
+    }
+
+    .tab-spacer { flex: 1; }
+
+    .nav-hello {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ground);
+      background: var(--ink);
+      padding: 8px 16px;
+      border-radius: 3px;
+      text-decoration: none;
+      transition: background 0.15s;
+      flex-shrink: 0;
+    }
+    .nav-hello:hover { background: var(--ember); }
+
+    /* ── CONTENT ── */
+    .content {
+      flex: 1;
+      overflow-y: auto;
+    }
+
+    .tab-panel {
+      display: none;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 5rem 3rem 6rem;
+    }
+
+    .tab-panel.active { display: block; }
+
+    /* ── TYPOGRAPHY ── */
+    .display {
+      font-family: 'Bebas Neue', sans-serif;
+      letter-spacing: 0.03em;
+      line-height: 0.88;
+      color: var(--ink);
+    }
+
+    .label {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+    }
+    .label::before {
+      content: '';
+      width: 20px;
+      height: 2px;
+      background: var(--ember);
+      display: inline-block;
+    }
+
+    p {
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--ash);
+      line-height: 1.85;
+    }
+
+    p strong { color: var(--ink); font-weight: 500; }
+    p em { color: var(--ember); font-style: normal; }
+
+    .spacer-sm { height: 1.5rem; }
+    .spacer-md { height: 2.5rem; }
+    .spacer-lg { height: 4rem; }
+
+    hr {
+      border: none;
+      border-top: 0.5px solid var(--chalk);
+      margin: 3rem 0;
+    }
+
+    /* ── VISION ── */
+    .vision-headline {
+      font-size: clamp(52px, 8vw, 88px);
+      margin-bottom: 2rem;
+    }
+
+    /* ── LAB ── */
+    .exp-list {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .exp-item {
+      background: var(--ground-2);
+      border-radius: 6px;
+      padding: 1.75rem 2rem;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 2rem;
+      text-decoration: none;
+      transition: background 0.15s;
+      border: 0.5px solid var(--chalk);
+    }
+    .exp-item:hover { background: var(--chalk); }
+    .exp-item.placeholder {
+      opacity: 0.5;
+      border-style: dashed;
+      cursor: default;
+    }
+    .exp-item.placeholder:hover { background: var(--ground-2); }
+
+    .exp-item-left { flex: 1; }
+
+    .exp-item-tag {
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .exp-item-title {
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--ink);
+      letter-spacing: -0.02em;
+      margin-bottom: 5px;
+    }
+
+    .exp-item-desc {
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--ash);
+      line-height: 1.65;
+    }
+
+    .exp-item-arrow {
+      font-size: 18px;
+      color: var(--chalk);
+      flex-shrink: 0;
+      padding-top: 4px;
+      transition: color 0.15s;
+    }
+    .exp-item:hover .exp-item-arrow { color: var(--ash); }
+
+    .status-dot {
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      margin-right: 6px;
+      vertical-align: middle;
+      position: relative;
+      top: -1px;
+    }
+
+    /* ── THINKING ── */
+    .substack-embed {
+      border: 0.5px solid var(--chalk);
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 3rem;
+    }
+
+    .substack-header {
+      background: var(--ground-2);
+      padding: 1.5rem 2rem;
+      border-bottom: 0.5px solid var(--chalk);
+    }
+
+    .substack-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 24px;
+      letter-spacing: 0.04em;
+      color: var(--ink);
+      margin-bottom: 4px;
+    }
+
+    .substack-desc {
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--ash);
+    }
+
+    .substack-signup {
+      padding: 1.5rem 2rem;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .writing-list { display: flex; flex-direction: column; }
+
+    .writing-item {
+      padding: 1.5rem 0;
+      border-bottom: 0.5px solid var(--chalk);
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 2rem;
+      align-items: start;
+      text-decoration: none;
+      transition: opacity 0.15s;
+    }
+    .writing-item:hover { opacity: 0.7; }
+    .writing-item:last-child { border-bottom: none; }
+
+    .wi-title {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+      margin-bottom: 4px;
+    }
+    .wi-sub { font-size: 13px; font-weight: 300; color: var(--ash); line-height: 1.6; }
+    .wi-date {
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--chalk);
+      flex-shrink: 0;
+      padding-top: 3px;
+    }
+
+    /* ── WORK ── */
+    .work-muscles {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .muscle {
+      padding: 1.5rem 0;
+      border-bottom: 0.5px solid var(--chalk);
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 2rem;
+      align-items: start;
+    }
+    .muscle:last-child { border-bottom: none; }
+
+    .muscle-name {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+      padding-top: 2px;
+    }
+
+    .muscle-desc {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--ash);
+      line-height: 1.7;
+    }
+
+    .work-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink);
+      text-decoration: none;
+      border-bottom: 1px solid var(--chalk);
+      padding-bottom: 2px;
+      transition: border-color 0.15s, color 0.15s;
+    }
+    .work-cta:hover { color: var(--ember); border-color: var(--ember); }
+
+    /* ── INVESTING ── */
+    .investing-body {
+      font-size: 16px;
+      font-weight: 300;
+      color: var(--ash);
+      line-height: 1.9;
+      max-width: 600px;
+    }
+    .investing-body strong { color: var(--ink); font-weight: 500; }
+    .investing-body em { color: var(--harvest); font-style: normal; }
+
+    /* ── HERO (Vision default) ── */
+    .site-intro {
+      padding-bottom: 3rem;
+      border-bottom: 0.5px solid var(--chalk);
+      margin-bottom: 3rem;
+    }
+
+    .site-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(48px, 7vw, 76px);
+      letter-spacing: 0.03em;
+      line-height: 0.9;
+      color: var(--ink);
+      margin-bottom: 1.25rem;
+    }
+
+    .site-tagline {
+      font-size: 17px;
+      font-weight: 300;
+      color: var(--ash);
+      line-height: 1.7;
+    }
+    .site-tagline strong { color: var(--ink); font-weight: 500; }
+
+    /* Principles list - What you get */
+    .principles {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .principles li {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--ash);
+      line-height: 1.6;
+      padding-left: 18px;
+      position: relative;
+    }
+    .principles li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 9px;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--ember);
+    }
+    .principles li strong {
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav, .tab-bar { padding: 0 1.25rem; }
+      .tab { padding: 14px 12px; font-size: 9px; }
+      .tab-panel { padding: 3rem 1.25rem 4rem; }
+      .muscle { grid-template-columns: 1fr; gap: 0.5rem; }
+      .timeline-item { grid-template-columns: 60px 1fr; gap: 1rem; }
+    }
+
+
+    /* Kite tail wave animation */
+    @keyframes tailWave {
+      0%   { d: path("M70 118 Q62 132 67 146 Q72 158 64 170"); }
+      25%  { d: path("M70 118 Q75 132 70 146 Q65 158 72 170"); }
+      50%  { d: path("M70 118 Q62 132 67 146 Q72 158 64 170"); }
+      75%  { d: path("M70 118 Q58 130 65 146 Q73 160 61 170"); }
+      100% { d: path("M70 118 Q62 132 67 146 Q72 158 64 170"); }
+    }
+    @keyframes bow1Wave {
+      0%, 100% { transform: rotate(-22deg) translate(0, 0); }
+      50%       { transform: rotate(-10deg) translate(2px, 2px); }
+    }
+    @keyframes bow2Wave {
+      0%, 100% { transform: rotate(18deg) translate(0, 0); }
+      50%       { transform: rotate(28deg) translate(-2px, 2px); }
+    }
+    .tail-string { animation: tailWave 2.5s ease-in-out infinite; }
+    .tail-bow-1  { animation: bow1Wave 2.5s ease-in-out infinite; }
+    .tail-bow-2  { animation: bow2Wave 2.5s ease-in-out infinite 0.3s; }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <div class="nav-logo" onclick="setTab('vision')">
+    <svg width="24" height="30" viewBox="0 0 140 190" fill="none">
+      <path d="M70 8 L124 68 L70 68 Z" fill="#E8501A"/>
+      <path d="M70 8 L16 68 L70 68 Z" fill="#1C0F08"/>
+      <path d="M70 68 L124 68 L70 118 Z" fill="#FAF8F3"/>
+      <path d="M70 68 L16 68 L70 118 Z" fill="#C8A830"/>
+      <line x1="16" y1="68" x2="124" y2="68" stroke="white" stroke-width="4" opacity="0.4"/>
+      <line x1="70" y1="8" x2="70" y2="118" stroke="white" stroke-width="4" opacity="0.4"/>
+      <circle cx="50" cy="56" r="11" fill="white" opacity="0.95"/>
+      <circle cx="53" cy="59" r="7" fill="#1C0F08"/>
+      <circle cx="56" cy="55" r="2.8" fill="white"/>
+      <circle cx="90" cy="56" r="11" fill="white" opacity="0.95"/>
+      <circle cx="93" cy="59" r="7" fill="#1C0F08"/>
+      <circle cx="96" cy="55" r="2.8" fill="white"/>
+      <path d="M54 82 Q70 94 86 82" stroke="#1C0F08" stroke-width="3.5" fill="none" stroke-linecap="round" opacity="0.55"/>
+      <path class="tail-string" d="M70 118 Q62 132 67 146 Q72 158 64 170" stroke="#1C0F08" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+      <ellipse class="tail-bow-1" cx="64" cy="130" rx="10" ry="5.5" fill="#E8501A" transform="rotate(-22 64 130)"/>
+      <ellipse class="tail-bow-2" cx="66" cy="151" rx="10" ry="5.5" fill="#1A7A4A" transform="rotate(18 66 151)"/>
+    </svg>
+    <div class="nav-name">YITE <span>LABS</span></div>
+  </div>
+  <a class="nav-hello" href="mailto:benj.kite@gmail.com">Say hello ↗</a>
+</nav>
+
+<!-- ── TAB BAR ── -->
+<div class="tab-bar">
+  <div class="tab active" data-tab="vision" onclick="setTab('vision')">Vision</div>
+  <div class="tab" data-tab="lab" onclick="setTab('lab')">The Lab</div>
+  <div class="tab" data-tab="thinking" onclick="setTab('thinking')">Thinking</div>
+  <div class="tab" data-tab="work" onclick="setTab('work')">Work</div>
+  <div class="tab" data-tab="investing" onclick="setTab('investing')">Investing</div>
+</div>
+
+<!-- ── CONTENT ── -->
+<div class="content">
+
+  <!-- VISION -->
+  <div class="tab-panel active" id="panel-vision">
+
+    <div class="site-intro">
+      <div class="site-name">BEN KITE,<br>MELBOURNE.</div>
+      <p class="site-tagline">Home for my tinkering, ideas and work,<br>and <strong>meeting new people.</strong></p>
+    </div>
+
+    <div class="label">May 2026</div>
+    <div class="spacer-sm"></div>
+
+    <p>In May 2026, as I build this, it feels like the adult world I've worked and lived in for 15 years is shifting. Work is less stable. Australia's tailwinds are quieter. The usual ways to build prosperity feel less certain. AI adds risk of rapid career disruption.</p>
+
+    <div class="spacer-sm"></div>
+
+    <p><strong>Yite Labs is my strategic career infrastructure,</strong> built to create a great life for me, my family and friends, on my own terms, regardless of what the world does around it. Part portfolio, part holding company, part public accountability.</p>
+
+    <div class="spacer-sm"></div>
+
+    <p>The work leads the way. The experiments, the thinking, the investing compound alongside it. <strong>My bet that the people who stay curious, keep building and keep moving will always have more choices than the people who don't.</strong></p>
+
+    <div class="spacer-sm"></div>
+
+    <p>Success in 10 years looks like this: I could step back for 12 months. Hit the road in a caravan or be a stay at home dad. And work life goes on - income, ideas and opportunities keep coming in. <strong>A feeling of independence and diversification.</strong></p>
+
+    <div class="spacer-sm"></div>
+
+    <p>And I'll probably keep choosing to do the same thing, because it's fun. But more on my terms.</p>
+
+
+
+  </div>
+
+  <!-- THE LAB -->
+  <div class="tab-panel" id="panel-lab">
+
+    <div class="label">Experiments + tools</div>
+    <div class="spacer-sm"></div>
+    <p>Things I've built for fun, learning or helping others.</p>
+
+    <div class="spacer-md"></div>
+
+    <div class="exp-list">
+
+      <a href="https://usegroundwork.vercel.app" target="_blank" rel="noopener noreferrer" class="exp-item">
+        <div class="exp-item-left">
+          <div class="exp-item-tag">
+            <span class="status-dot" style="background:#E8501A;"></span>
+            <span style="color:var(--ember);">Tool · Live</span>
+          </div>
+          <div class="exp-item-title">Groundwork</div>
+          <div class="exp-item-desc">Strategic planning, collapsed to an hour. Prototype the plan, align the room, ship it the next day.</div>
+        </div>
+        <div class="exp-item-arrow">↗</div>
+      </a>
+
+      <a href="https://ptize.vercel.app" target="_blank" rel="noopener noreferrer" class="exp-item">
+        <div class="exp-item-left">
+          <div class="exp-item-tag">
+            <span class="status-dot" style="background:#1A7A4A;"></span>
+            <span style="color:var(--moss);">Tool · Live</span>
+          </div>
+          <div class="exp-item-title">Ptize</div>
+          <div class="exp-item-desc">Ideas in, decisions out. Score ideas on desirability, feasibility and viability, then walk into the room with a way forward.</div>
+        </div>
+        <div class="exp-item-arrow">↗</div>
+      </a>
+
+      <a href="https://github.com/benjkite-tech/yitelabs/blob/main/README.md" target="_blank" rel="noopener noreferrer" class="exp-item">
+        <div class="exp-item-left">
+          <div class="exp-item-tag">
+            <span class="status-dot" style="background:#2D4FA8;"></span>
+            <span style="color:#2D4FA8;">Design system · Live</span>
+          </div>
+          <div class="exp-item-title">Yite Labs brand and design system</div>
+          <div class="exp-item-desc">Before building anything, I built the identity. Name, mark, colour system, type stack. The full story of how Yite Labs got its look.</div>
+        </div>
+        <div class="exp-item-arrow">↗</div>
+      </a>
+
+      <div class="exp-item placeholder">
+        <div class="exp-item-left">
+          <div class="exp-item-tag" style="color:var(--ash);">More coming</div>
+          <div class="exp-item-title" style="color:var(--ash);">Skills, frameworks and tools</div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- THINKING -->
+  <div class="tab-panel" id="panel-thinking">
+
+    <div class="label">Writing + ideas</div>
+    <div class="spacer-sm"></div>
+
+    <p>I find writing a great way to explore ideas.</p>
+
+    <div class="spacer-sm"></div>
+
+    <p style="font-size:13px; color:var(--ash);">I've been publishing some of these thoughts since 2018. Re-reading them can sometimes be embarrassing as my thinking evolves, but this time capsule captures the journey and serves as a great reminder to keep an open mind.</p>
+
+    <div class="spacer-md"></div>
+
+    <!-- Substack embed -->
+    <div class="substack-embed">
+      <div class="substack-header">
+        <div class="substack-title">Follow along</div>
+        <div class="substack-desc">Subscribe on Substack, if you're interested.</div>
+      </div>
+      <div class="substack-signup">
+        <iframe src="https://benkite.substack.com/embed"
+          width="100%"
+          height="120"
+          style="border:none; background:transparent; overflow:hidden;"
+          frameborder="0"
+          scrolling="no">
+        </iframe>
+        <p style="font-size:11px; color:var(--ash); margin-top:8px;">Or <a href="https://benkite.substack.com" target="_blank" rel="noopener noreferrer" style="color:var(--ash); text-decoration:underline;">subscribe directly on Substack</a>.</p>
+      </div>
+    </div>
+
+    <!-- Writing list - live from Substack RSS -->
+    <div class="writing-list" id="writing-feed">
+      <div style="padding: 1.5rem 0; font-size: 13px; color: var(--chalk); font-family: 'Space Mono', monospace; letter-spacing: 0.1em; text-transform: uppercase;">Loading latest writing...</div>
+    </div>
+
+    <div class="spacer-md"></div>
+    <a href="https://substack.com/@benkite?utm_source=user-menu" target="_blank" rel="noopener noreferrer" class="work-cta">All writing on Substack ↗</a>
+
+  </div>
+
+  <!-- WORK -->
+  <div class="tab-panel" id="panel-work">
+
+    <div class="label">What I do</div>
+    <div class="spacer-sm"></div>
+
+    <p>I love working in high-growth, entrepreneurial, tech businesses.</p>
+
+    <div class="spacer-sm"></div>
+
+    <p>The chaos, the challenge, the new-wave gadgets, the fun. It's just addictive.</p>
+
+    <div class="spacer-sm"></div>
+
+    <p>I do this as a Strategy, Ops and Finance operator. I bring 15+ years experience across start-ups, big tech, consulting, restructuring, and in-house transformations. I specialise in the gap between strategy and execution. Setting direction, launching new things, sorting out ops and fires, aligning teams and making it easy for them to work at speed, and using data to find opportunities and focus on what actually matters.</p>
+
+    <hr/>
+
+    <div class="label">Three muscles</div>
+    <div class="spacer-sm"></div>
+
+    <div class="work-muscles">
+
+      <div class="muscle">
+        <div class="muscle-name">Growth ops</div>
+        <div class="muscle-desc">GTM planning, launching new products and markets, optimising customer funnels and conversion.</div>
+      </div>
+
+      <div class="muscle">
+        <div class="muscle-name">Internal ops</div>
+        <div class="muscle-desc">Strategic goal-setting and execution. Building functions, systems, and processes.</div>
+      </div>
+
+      <div class="muscle">
+        <div class="muscle-name">Improvement & transformation</div>
+        <div class="muscle-desc">Enabling new capability. Finding and fixing issues in a structured way. Restructuring for bigger, faster and/or more profitable business.</div>
+      </div>
+
+    </div>
+
+    <hr/>
+
+    <div class="label">My operating principles</div>
+    <div class="spacer-sm"></div>
+
+    <ul class="principles">
+      <li><strong>Visibility as a system.</strong> Public channels, one-page docs, a central knowledge base. A trail of progress anyone can tap into.</li>
+      <li><strong>Build over theory.</strong> Now beats later, and great ideas on paper aren't always great in reality. Prototype, ship, and get real-world feedback fast. Momentum is infectious.</li>
+      <li><strong>Clear north stars.</strong> Decisions get made on the best and fastest path to the goal. And if the goal needs to change, it changes - that's just real-time learning.</li>
+      <li><strong>Eliminate ruthlessly.</strong> Clarity comes from cutting, not adding. If it's not hell yes, it's probably a no.</li>
+      <li><strong>Basics before sexy.</strong> Shiny ideas are great, but it's the boring details that often matter in the long-term. Be mindful of the foundations in place.</li>
+      <li><strong>Diagnose upstream.</strong> Downstream symptoms - churn, collections, support tickets - almost always start upstream.</li>
+      <li><strong>AI-first lens.</strong> It's just the future. Start here - how do processes, teams, and products look through this lens? Go too far though, and you're... just a robot.</li>
+      <li><strong>Decisive by default.</strong> Clear recommendations, room to disagree. "Moving this way unless there's a strong view otherwise."</li>
+      <li><strong>Embrace tension.</strong> It's status quo when trying to do something cool. Find what you agree on. Table the differences. Agree how to resolve - a test, a trial, a customer signal.</li>
+    </ul>
+
+    <hr/>
+
+    <a href="https://www.linkedin.com/in/ben-kite-90001364/" target="_blank" rel="noopener noreferrer" class="work-cta">Full background on LinkedIn ↗</a>
+
+  </div>
+
+  <!-- INVESTING -->
+  <div class="tab-panel" id="panel-investing">
+
+    <div class="label">The long game</div>
+    <div class="spacer-sm"></div>
+
+    <p class="investing-body">
+      More private for now. But here to drive accountability and steer me towards work and opportunities with real ownership. It's also a signal that I'm open to chat if I can help in (small) ways on the capital and growth journey.
+    </p>
+
+  </div>
+
+</div>
+
+<script>
+  const VALID_TABS = ['vision', 'lab', 'thinking', 'work', 'investing'];
+
+  function setTab(name, updateHash = true) {
+    if (!VALID_TABS.includes(name)) name = 'vision';
+    document.querySelectorAll('.tab').forEach(t => {
+      t.classList.toggle('active', t.dataset.tab === name);
+    });
+    document.querySelectorAll('.tab-panel').forEach(p => {
+      p.classList.toggle('active', p.id === 'panel-' + name);
+    });
+    document.querySelector('.content').scrollTop = 0;
+    if (updateHash) {
+      history.replaceState(null, '', name === 'vision' ? window.location.pathname : '#' + name);
+    }
+  }
+
+  // Hash routing - shared links land on the right tab
+  function initFromHash() {
+    const hash = window.location.hash.replace('#', '');
+    setTab(hash || 'vision', false);
+  }
+  window.addEventListener('hashchange', initFromHash);
+  initFromHash();
+
+  // Live writing feed from Substack RSS
+  async function loadWritingFeed() {
+    const container = document.getElementById('writing-feed');
+    if (!container) return;
+    try {
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), 6000);
+      const res = await fetch('https://api.rss2json.com/v1/api.json?rss_url=' + encodeURIComponent('https://benkite.substack.com/feed'), { signal: controller.signal });
+      clearTimeout(timeout);
+      if (!res.ok) throw new Error('Feed unavailable');
+      const data = await res.json();
+      if (data.status !== 'ok' || !data.items || data.items.length === 0) throw new Error('No items');
+
+      const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+      container.innerHTML = data.items.slice(0, 6).map(item => {
+        const d = new Date(item.pubDate);
+        const date = months[d.getMonth()] + ' ' + d.getFullYear();
+        const desc = (item.description || '').replace(/<[^>]+>/g, '').trim().slice(0, 140);
+        return `
+          <a href="${item.link}" target="_blank" rel="noopener noreferrer" class="writing-item">
+            <div>
+              <div class="wi-title">${item.title}</div>
+              <div class="wi-sub">${desc}${desc.length >= 140 ? '...' : ''}</div>
+            </div>
+            <div class="wi-date">${date}</div>
+          </a>`;
+      }).join('');
+    } catch (e) {
+      container.innerHTML = '<div style="padding: 1.5rem 0; font-size: 14px; color: var(--ash);">Latest writing lives on <a href="https://benkite.substack.com" target="_blank" rel="noopener noreferrer" style="color: var(--ember); text-decoration: underline;">Substack</a>.</div>';
+    }
+  }
+  try { loadWritingFeed(); } catch (e) { /* fail silently */ }
+</script>
+
+<!-- Vercel Analytics -->
+<script defer src="/_vercel/insights/script.js"></script>
+
+</body>
+</html>
