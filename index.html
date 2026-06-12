@@ -298,10 +298,10 @@
     }
 
     .substack-signup {
-      padding: 1.5rem 2rem;
-      display: flex;
-      gap: 10px;
-      align-items: center;
+      padding: 1.25rem 1.5rem;
+    }
+    .substack-signup iframe {
+      display: block;
     }
 
     .writing-list { display: flex; flex-direction: column; }
@@ -348,18 +348,18 @@
       padding: 1.5rem 0;
       border-bottom: 0.5px solid var(--chalk);
       display: grid;
-      grid-template-columns: 160px 1fr;
-      gap: 2rem;
+      grid-template-columns: 200px 1fr;
+      gap: 1.5rem;
       align-items: start;
     }
     .muscle:last-child { border-bottom: none; }
 
     .muscle-name {
-      font-size: 13px;
-      font-weight: 500;
+      font-size: 15px;
+      font-weight: 600;
       color: var(--ink);
       letter-spacing: -0.01em;
-      padding-top: 2px;
+      padding-top: 1px;
     }
 
     .muscle-desc {
@@ -512,9 +512,9 @@
 <!-- ── TAB BAR ── -->
 <div class="tab-bar">
   <div class="tab active" data-tab="vision" onclick="setTab('vision')">Vision</div>
+  <div class="tab" data-tab="work" onclick="setTab('work')">Work</div>
   <div class="tab" data-tab="lab" onclick="setTab('lab')">The Lab</div>
   <div class="tab" data-tab="thinking" onclick="setTab('thinking')">Thinking</div>
-  <div class="tab" data-tab="work" onclick="setTab('work')">Work</div>
   <div class="tab" data-tab="investing" onclick="setTab('investing')">Investing</div>
 </div>
 
@@ -536,7 +536,7 @@
 
     <div class="spacer-sm"></div>
 
-    <p><strong>Yite Labs is my strategic career infrastructure,</strong> built to create a great life for me, my family and friends, on my own terms, regardless of what the world does around it. Part portfolio, part holding company, part public accountability.</p>
+    <p><strong>Yite Labs is my strategic career infrastructure,</strong> built to create a great life on my own terms, regardless of what the world does around it. Part portfolio, part holding company, part public accountability.</p>
 
     <div class="spacer-sm"></div>
 
@@ -618,11 +618,7 @@
     <div class="label">Writing + ideas</div>
     <div class="spacer-sm"></div>
 
-    <p>I find writing a great way to explore ideas.</p>
-
-    <div class="spacer-sm"></div>
-
-    <p style="font-size:13px; color:var(--ash);">I've been publishing some of these thoughts since 2018. Re-reading them can sometimes be embarrassing as my thinking evolves, but this time capsule captures the journey and serves as a great reminder to keep an open mind.</p>
+    <p>I find writing a great way to explore ideas. I've been publishing some of these thoughts since 2018. Re-reading them can sometimes be embarrassing as my thinking evolves, but this time capsule captures the journey and serves as a great reminder to keep an open mind.</p>
 
     <div class="spacer-md"></div>
 
@@ -640,7 +636,6 @@
           frameborder="0"
           scrolling="no">
         </iframe>
-        <p style="font-size:11px; color:var(--ash); margin-top:8px;">Or <a href="https://benkite.substack.com" target="_blank" rel="noopener noreferrer" style="color:var(--ash); text-decoration:underline;">subscribe directly on Substack</a>.</p>
       </div>
     </div>
 
@@ -732,7 +727,7 @@
 </div>
 
 <script>
-  const VALID_TABS = ['vision', 'lab', 'thinking', 'work', 'investing'];
+  const VALID_TABS = ['vision', 'work', 'lab', 'thinking', 'investing'];
 
   function setTab(name, updateHash = true) {
     if (!VALID_TABS.includes(name)) name = 'vision';
