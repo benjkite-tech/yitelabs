@@ -69,7 +69,9 @@
       gap: 10px;
       text-decoration: none;
       cursor: pointer;
+      transition: opacity 0.15s;
     }
+    .nav-logo:hover { opacity: 0.7; }
 
     .nav-name {
       font-family: 'Bebas Neue', sans-serif;
@@ -79,6 +81,44 @@
       line-height: 1;
     }
     .nav-name span { color: var(--ember); }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+    }
+    .pulse {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ash);
+    }
+    .pulse-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--moss);
+      position: relative;
+    }
+    .pulse-dot::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: var(--moss);
+      animation: pulseRing 2.4s ease-out infinite;
+    }
+    @keyframes pulseRing {
+      0%   { transform: scale(1); opacity: 0.6; }
+      100% { transform: scale(3.2); opacity: 0; }
+    }
+    @media (max-width: 768px) {
+      .pulse { display: none; }
+    }
 
     /* ── TABS ── */
     .tab-bar {
@@ -172,10 +212,10 @@
     }
 
     p {
-      font-size: 15px;
+      font-size: 16px;
       font-weight: 300;
       color: var(--ash);
-      line-height: 1.85;
+      line-height: 1.8;
     }
 
     p strong { color: var(--ink); font-weight: 500; }
@@ -405,7 +445,7 @@
 
     .site-name {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(48px, 7vw, 76px);
+      font-size: clamp(44px, 6vw, 68px);
       letter-spacing: 0.03em;
       line-height: 0.9;
       color: var(--ink);
@@ -506,7 +546,10 @@
     </svg>
     <div class="nav-name">YITE <span>LABS</span></div>
   </div>
-  <a class="nav-hello" href="mailto:benj.kite@gmail.com">Say hello ↗</a>
+  <div class="nav-right">
+    <span class="pulse" id="pulse"><span class="pulse-dot"></span><span id="pulse-text">Active</span></span>
+    <a class="nav-hello" href="mailto:benj.kite@gmail.com">Say hello ↗</a>
+  </div>
 </nav>
 
 <!-- ── TAB BAR ── -->
@@ -532,23 +575,23 @@
     <div class="label">May 2026</div>
     <div class="spacer-sm"></div>
 
-    <p>In May 2026, as I build this, it feels like the adult world I've worked and lived in for 15 years is shifting. Work is less stable. Australia's tailwinds are quieter. The usual ways to build prosperity feel less certain. AI adds risk of rapid career disruption.</p>
+    <p>In May 2026, as I build this, it feels like the adult world I've worked and lived in for 15 years is shifting. Work is less stable. Australia's tailwinds are quieter. The old ways of getting ahead feel less reliable. AI is changing what a career even looks like.</p>
 
     <div class="spacer-sm"></div>
 
-    <p><strong>Yite Labs is my strategic career infrastructure,</strong> built to create a great life on my own terms, regardless of what the world does around it. Part portfolio, part holding company, part public accountability.</p>
+    <p>So I'm building something of my own. <strong>Yite Labs is my strategic career infrastructure</strong> - built to create options, security and a great life for me and my family. Part portfolio, part holding company, part public accountability.</p>
 
     <div class="spacer-sm"></div>
 
-    <p>The work leads the way. The experiments, the thinking, the investing compound alongside it. <strong>My bet that the people who stay curious, keep building and keep moving will always have more choices than the people who don't.</strong></p>
+    <p>The hard work leads the way. The experiments, the thinking, and the investing compound alongside it. <strong>My bet is on staying curious and not standing still. Movement creates opportunity.</strong></p>
 
     <div class="spacer-sm"></div>
 
-    <p>Success in 10 years looks like this: I could step back for 12 months. Hit the road in a caravan or be a stay at home dad. And work life goes on - income, ideas and opportunities keep coming in. <strong>A feeling of independence and diversification.</strong></p>
+    <p>Success in 10 years looks like this. I could step back for 12 months - hit the road in a caravan, or just be a stay-at-home dad for a while - and life goes on. Income, ideas and opportunities keep coming in. <strong>A quiet sense of independence and optionality.</strong></p>
 
     <div class="spacer-sm"></div>
 
-    <p>And I'll probably keep choosing to do the same thing, because it's fun. But more on my terms.</p>
+    <p>And I'd probably keep doing the same thing anyway. Because it's fun.</p>
 
 
 
@@ -584,7 +627,7 @@
             <span style="color:var(--moss);">Tool · Live</span>
           </div>
           <div class="exp-item-title">Ptize</div>
-          <div class="exp-item-desc">Ideas in, decisions out. Score ideas on desirability, feasibility and viability, then walk into the room with a way forward.</div>
+          <div class="exp-item-desc">Fast ideas in. Fast decisions out. Score ideas on desirability, feasibility and viability, then walk into the room with a way forward.</div>
         </div>
         <div class="exp-item-arrow">↗</div>
       </a>
@@ -644,9 +687,6 @@
       <div style="padding: 1.5rem 0; font-size: 13px; color: var(--chalk); font-family: 'Space Mono', monospace; letter-spacing: 0.1em; text-transform: uppercase;">Loading latest writing...</div>
     </div>
 
-    <div class="spacer-md"></div>
-    <a href="https://substack.com/@benkite?utm_source=user-menu" target="_blank" rel="noopener noreferrer" class="work-cta">All writing on Substack ↗</a>
-
   </div>
 
   <!-- WORK -->
@@ -655,11 +695,7 @@
     <div class="label">What I do</div>
     <div class="spacer-sm"></div>
 
-    <p>I love working in high-growth, entrepreneurial, tech businesses.</p>
-
-    <div class="spacer-sm"></div>
-
-    <p>The chaos, the challenge, the new-wave gadgets, the fun. It's just addictive.</p>
+    <p>I love working in high-growth, entrepreneurial, tech businesses. The chaos, the challenge, the new-wave gadgets, the fun. It's just addictive.</p>
 
     <div class="spacer-sm"></div>
 
@@ -700,8 +736,8 @@
       <li><strong>Clear north stars.</strong> Decisions get made on the best and fastest path to the goal. And if the goal needs to change, it changes - that's just real-time learning.</li>
       <li><strong>Eliminate ruthlessly.</strong> Clarity comes from cutting, not adding. If it's not hell yes, it's probably a no.</li>
       <li><strong>Basics before sexy.</strong> Shiny ideas are great, but it's the boring details that often matter in the long-term. Be mindful of the foundations in place.</li>
-      <li><strong>Diagnose upstream.</strong> Downstream symptoms - churn, collections, support tickets - almost always start upstream.</li>
-      <li><strong>AI-first lens.</strong> It's just the future. Start here - how do processes, teams, and products look through this lens? Go too far though, and you're... just a robot.</li>
+      <li><strong>Diagnose upstream.</strong> Downstream symptoms - churn, complaints, support tickets - almost always start upstream.</li>
+      <li><strong>AI-first lens.</strong> It's just the future. Start here - how do processes, teams, and products look through this lens? Just don't lose the human bit.</li>
       <li><strong>Decisive by default.</strong> Clear recommendations, room to disagree. "Moving this way unless there's a strong view otherwise."</li>
       <li><strong>Embrace tension.</strong> It's status quo when trying to do something cool. Find what you agree on. Table the differences. Agree how to resolve - a test, a trial, a customer signal.</li>
     </ul>
@@ -765,6 +801,14 @@
       if (data.status !== 'ok' || !data.items || data.items.length === 0) throw new Error('No items');
 
       const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+      // Update nav pulse with latest activity date
+      try {
+        const latest = new Date(data.items[0].pubDate);
+        const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+        const pulseText = document.getElementById('pulse-text');
+        if (pulseText) pulseText.textContent = 'Last wrote ' + months[latest.getMonth()] + ' ' + latest.getFullYear();
+      } catch (e) { /* keep default */ }
 
       container.innerHTML = data.items.slice(0, 6).map(item => {
         const d = new Date(item.pubDate);
