@@ -810,7 +810,7 @@
         if (pulseText) pulseText.textContent = 'Last wrote ' + months[latest.getMonth()] + ' ' + latest.getFullYear();
       } catch (e) { /* keep default */ }
 
-      container.innerHTML = data.items.slice(0, 6).map(item => {
+      container.innerHTML = data.items.map(item => {
         const d = new Date(item.pubDate);
         const date = months[d.getMonth()] + ' ' + d.getFullYear();
         const desc = (item.description || '').replace(/<[^>]+>/g, '').trim().slice(0, 140);
@@ -824,7 +824,7 @@
           </a>`;
       }).join('');
     } catch (e) {
-      container.innerHTML = '<div style="padding: 1.5rem 0; font-size: 14px; color: var(--ash);">Latest writing lives on <a href="https://benkite.substack.com" target="_blank" rel="noopener noreferrer" style="color: var(--ember); text-decoration: underline;">Substack</a>.</div>';
+      container.innerHTML = '<div style="padding: 1.5rem 0; font-size: 14px; color: var(--ash);">All writing lives on <a href="https://benkite.substack.com" target="_blank" rel="noopener noreferrer" style="color: var(--ember); text-decoration: underline;">Substack</a>.</div>';
     }
   }
   try { loadWritingFeed(); } catch (e) { /* fail silently */ }
