@@ -80,4 +80,4 @@ The name took longer than the logo. The logo took longer than the colour system.
 
 ---
 
-*Part of Yite Labs · yitelabs.co · Melbourne · Est. 2025*
+*Part of Yite Labs · yitelabs.io · Melbourne · Est. 2025*
