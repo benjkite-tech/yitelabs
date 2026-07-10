@@ -3,20 +3,20 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Yite Labs - Ben Kite</title>
-  <meta name="description" content="Ben Kite, Melbourne. Home for tinkering, ideas, work. And meeting new people."/>
+  <title>Yite Labs - Ben Kite · Strategy, Ops + AI Transformation</title>
+  <meta name="description" content="Ben Kite's Melbourne studio for strategy, ops and AI transformation - plus the tools, writing and bets that come out of the work."/>
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
 
   <!-- Social sharing -->
   <meta property="og:title" content="Yite Labs - Ben Kite"/>
-  <meta property="og:description" content="Home for tinkering, ideas, work. And meeting new people."/>
+  <meta property="og:description" content="Strategy, ops and AI transformation - plus the tools, writing and bets that come out of the work."/>
   <meta property="og:image" content="https://yitelabs.co/og-image.png"/>
   <meta property="og:url" content="https://yitelabs.co"/>
   <meta property="og:type" content="website"/>
   <meta name="twitter:card" content="summary_large_image"/>
   <meta name="twitter:title" content="Yite Labs - Ben Kite"/>
-  <meta name="twitter:description" content="Home for tinkering, ideas, work. And meeting new people."/>
+  <meta name="twitter:description" content="Strategy, ops and AI transformation - plus the tools, writing and bets that come out of the work."/>
   <meta name="twitter:image" content="https://yitelabs.co/og-image.png"/>
 
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
@@ -29,7 +29,7 @@
       --ground:    #FAF8F3;
       --ground-2:  #F3EFE6;
       --chalk:     #E4DDD0;
-      --ash:       #8A7260;
+      --ash:       #76604F;
       --ember:     #E8501A;
       --moss:      #1A7A4A;
       --denim:     #2D4FA8;
@@ -51,6 +51,20 @@
       flex-direction: column;
     }
 
+
+    a:focus-visible, .tab:focus-visible, .signpost:focus-visible, .nav-logo:focus-visible, .nav-hello:focus-visible {
+      outline: 2px solid var(--ember);
+      outline-offset: 3px;
+      border-radius: 2px;
+    }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      .tail-string, .tail-bow-1, .tail-bow-2, .pulse-dot::after {
+        animation: none !important;
+      }
+      * { transition: none !important; }
+    }
     /* ── NAV ── */
     nav {
       background: var(--ground);
@@ -132,6 +146,7 @@
     }
 
     .tab {
+      text-decoration: none;
       font-family: 'Space Mono', monospace;
       font-size: 10px;
       letter-spacing: 0.12em;
@@ -372,7 +387,7 @@
       font-size: 9px;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: var(--chalk);
+      color: var(--ash);
       flex-shrink: 0;
       padding-top: 3px;
     }
@@ -466,6 +481,7 @@
       border-top: 0.5px solid var(--chalk);
     }
     .signpost {
+      text-decoration: none;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -573,7 +589,7 @@
 
 <!-- ── NAV ── -->
 <nav>
-  <div class="nav-logo" onclick="setTab('vision')">
+  <a class="nav-logo" href="#" onclick="setTab('vision'); return false;">
     <svg width="24" height="30" viewBox="0 0 140 190" fill="none">
       <path d="M70 8 L124 68 L70 68 Z" fill="#E8501A"/>
       <path d="M70 8 L16 68 L70 68 Z" fill="#1C0F08"/>
@@ -593,7 +609,7 @@
       <ellipse class="tail-bow-2" cx="66" cy="151" rx="10" ry="5.5" fill="#1A7A4A" transform="rotate(18 66 151)"/>
     </svg>
     <div class="nav-name">YITE <span>LABS</span></div>
-  </div>
+  </a>
   <div class="nav-right">
     <span class="pulse" id="pulse"><span class="pulse-dot"></span><span id="pulse-text">Active</span></span>
     <a class="nav-hello" href="mailto:benj.kite@gmail.com">Say hello ↗</a>
@@ -602,11 +618,11 @@
 
 <!-- ── TAB BAR ── -->
 <div class="tab-bar">
-  <div class="tab active" data-tab="vision" onclick="setTab('vision')">Hello</div>
-  <div class="tab" data-tab="work" onclick="setTab('work')">Work</div>
-  <div class="tab" data-tab="lab" onclick="setTab('lab')">The Lab</div>
-  <div class="tab" data-tab="thinking" onclick="setTab('thinking')">Thinking</div>
-  <div class="tab" data-tab="investing" onclick="setTab('investing')">Investing</div>
+  <a class="tab active" data-tab="vision" href="#" onclick="setTab('vision'); return false;">Hello</a>
+  <a class="tab" data-tab="work" href="#work" onclick="setTab('work'); return false;">Work</a>
+  <a class="tab" data-tab="lab" href="#lab" onclick="setTab('lab'); return false;">The Lab</a>
+  <a class="tab" data-tab="thinking" href="#thinking" onclick="setTab('thinking'); return false;">Thinking</a>
+  <a class="tab" data-tab="investing" href="#investing" onclick="setTab('investing'); return false;">Investing</a>
 </div>
 
 <!-- ── CONTENT ── -->
@@ -624,37 +640,37 @@
 
     <div class="signposts">
 
-      <div class="signpost" onclick="setTab('work')">
+      <a class="signpost" href="#work" onclick="setTab('work'); return false;">
         <div class="signpost-left">
           <div class="signpost-name"><span class="status-dot" style="background:var(--lavender);"></span>Work</div>
           <div class="signpost-desc">What I do for clients, and how I operate.</div>
         </div>
         <div class="signpost-arrow">→</div>
-      </div>
+      </a>
 
-      <div class="signpost" onclick="setTab('lab')">
+      <a class="signpost" href="#lab" onclick="setTab('lab'); return false;">
         <div class="signpost-left">
           <div class="signpost-name"><span class="status-dot" style="background:var(--ember);"></span>The Lab</div>
           <div class="signpost-desc">Tools and experiments, live and free to use.</div>
         </div>
         <div class="signpost-arrow">→</div>
-      </div>
+      </a>
 
-      <div class="signpost" onclick="setTab('thinking')">
+      <a class="signpost" href="#thinking" onclick="setTab('thinking'); return false;">
         <div class="signpost-left">
           <div class="signpost-name"><span class="status-dot" style="background:var(--denim);"></span>Thinking</div>
           <div class="signpost-desc">Writing and ideas, published since 2018.</div>
         </div>
         <div class="signpost-arrow">→</div>
-      </div>
+      </a>
 
-      <div class="signpost" onclick="setTab('investing')">
+      <a class="signpost" href="#investing" onclick="setTab('investing'); return false;">
         <div class="signpost-left">
           <div class="signpost-name"><span class="status-dot" style="background:var(--harvest);"></span>Investing</div>
           <div class="signpost-desc">The long game. More private, for now.</div>
         </div>
         <div class="signpost-arrow">→</div>
-      </div>
+      </a>
 
     </div>
 
@@ -778,7 +794,7 @@
 
     <!-- Writing list - live from Substack RSS -->
     <div class="writing-list" id="writing-feed">
-      <div style="padding: 1.5rem 0; font-size: 13px; color: var(--chalk); font-family: 'Space Mono', monospace; letter-spacing: 0.1em; text-transform: uppercase;">Loading latest writing...</div>
+      <div style="padding: 1.5rem 0; font-size: 13px; color: var(--ash); font-family: 'Space Mono', monospace; letter-spacing: 0.1em; text-transform: uppercase;">Loading latest writing...</div>
     </div>
 
     <div class="spacer-lg"></div>
@@ -860,6 +876,17 @@
     <a href="https://www.linkedin.com/in/ben-kite-90001364/" target="_blank" rel="noopener noreferrer" class="work-cta">Full background on LinkedIn ↗</a>
     <div class="spacer-sm"></div>
     <a href="https://github.com/benjkite-tech" target="_blank" rel="noopener noreferrer" class="work-cta">See my projects and code on GitHub ↗</a>
+
+    <hr/>
+
+    <div class="label">Working together</div>
+    <div class="spacer-sm"></div>
+
+    <p>Yite Labs is my contracting home. I take on work as projects, contracts and fractional roles.</p>
+
+    <div class="spacer-sm"></div>
+
+    <p>If there's something messy ahead - growth, change, AI adoption - happy to have a look. <a href="mailto:benj.kite@gmail.com" style="color: var(--ember); text-decoration: underline;">Say hello</a>.</p>
 
   </div>
 
