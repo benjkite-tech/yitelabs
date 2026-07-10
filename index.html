@@ -438,9 +438,8 @@
 
     /* ── HERO (Vision default) ── */
     .site-intro {
-      padding-bottom: 3rem;
-      border-bottom: 0.5px solid var(--chalk);
-      margin-bottom: 3rem;
+      padding-bottom: 2.5rem;
+      margin-bottom: 0.5rem;
     }
 
     .site-name {
@@ -459,6 +458,48 @@
       line-height: 1.7;
     }
     .site-tagline strong { color: var(--ink); font-weight: 500; }
+
+    /* Signposts - Hello tab wayfinding */
+    .signposts {
+      display: flex;
+      flex-direction: column;
+      border-top: 0.5px solid var(--chalk);
+    }
+    .signpost {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      padding: 1.4rem 0;
+      border-bottom: 0.5px solid var(--chalk);
+      cursor: pointer;
+      transition: opacity 0.15s;
+    }
+    .signpost:last-child { border-bottom: none; }
+    .signpost:hover { opacity: 0.65; }
+    .signpost-name {
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink);
+      font-weight: 700;
+      margin-bottom: 3px;
+    }
+    .signpost-name .status-dot { margin-right: 9px; }
+    .signpost-desc {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--ash);
+      line-height: 1.6;
+    }
+    .signpost-arrow {
+      font-size: 16px;
+      color: var(--ash);
+      flex-shrink: 0;
+      transition: color 0.15s, transform 0.15s;
+    }
+    .signpost:hover .signpost-arrow { color: var(--ember); transform: translateX(3px); }
 
     /* Principles list - What you get */
     .principles {
@@ -561,7 +602,7 @@
 
 <!-- ── TAB BAR ── -->
 <div class="tab-bar">
-  <div class="tab active" data-tab="vision" onclick="setTab('vision')">Vision</div>
+  <div class="tab active" data-tab="vision" onclick="setTab('vision')">Hello</div>
   <div class="tab" data-tab="work" onclick="setTab('work')">Work</div>
   <div class="tab" data-tab="lab" onclick="setTab('lab')">The Lab</div>
   <div class="tab" data-tab="thinking" onclick="setTab('thinking')">Thinking</div>
@@ -576,35 +617,46 @@
 
     <div class="site-intro">
       <div class="site-name">BEN KITE,<br>MELBOURNE.</div>
-      <p class="site-tagline">Home for my tinkering, ideas and work,<br>and <strong>meeting new people.</strong></p>
+      <p class="site-tagline"><strong>Yite Labs is my studio.</strong> I consult on strategy, ops and AI transformation, build tools, write, and take the odd bet.</p>
+      <div class="spacer-sm"></div>
+      <p class="site-tagline">The thesis: movement creates opportunity, and everything worth doing leaves a trail. Have a look around.</p>
     </div>
 
-    <div class="label">June 2026</div>
-    <div class="spacer-sm"></div>
+    <div class="signposts">
 
-    <p>In June 2026, as I build this, it feels like the adult world I've worked and lived in for 15 years is shifting. Work is less stable. Australia's tailwinds are quieter. The old ways of getting ahead feel less reliable. AI is rewriting careers — mine included.</p>
+      <div class="signpost" onclick="setTab('work')">
+        <div class="signpost-left">
+          <div class="signpost-name"><span class="status-dot" style="background:var(--lavender);"></span>Work</div>
+          <div class="signpost-desc">What I do for clients, and how I operate.</div>
+        </div>
+        <div class="signpost-arrow">→</div>
+      </div>
 
-    <div class="spacer-sm"></div>
+      <div class="signpost" onclick="setTab('lab')">
+        <div class="signpost-left">
+          <div class="signpost-name"><span class="status-dot" style="background:var(--ember);"></span>The Lab</div>
+          <div class="signpost-desc">Tools and experiments, live and free to use.</div>
+        </div>
+        <div class="signpost-arrow">→</div>
+      </div>
 
-    <p>So I'm building something of my own. <strong>Yite Labs is my career infrastructure</strong> - somewhere to build, tinker, and meet new people. Part portfolio, part holding company, part public accountability.</p>
+      <div class="signpost" onclick="setTab('thinking')">
+        <div class="signpost-left">
+          <div class="signpost-name"><span class="status-dot" style="background:var(--denim);"></span>Thinking</div>
+          <div class="signpost-desc">Writing and ideas, published since 2018.</div>
+        </div>
+        <div class="signpost-arrow">→</div>
+      </div>
 
-    <div class="spacer-sm"></div>
+      <div class="signpost" onclick="setTab('investing')">
+        <div class="signpost-left">
+          <div class="signpost-name"><span class="status-dot" style="background:var(--harvest);"></span>Investing</div>
+          <div class="signpost-desc">The long game. More private, for now.</div>
+        </div>
+        <div class="signpost-arrow">→</div>
+      </div>
 
-    <p>My bet is that movement creates opportunity. The hard work leads the way; the experiments, the thinking and the investing compound alongside it.</p>
-
-    <div class="spacer-sm"></div>
-
-    <p>Every piece leaves a trail. A growing body of work and ideas that compounds over time - and counts for more in a world where AI can surface and build on it.</p>
-
-    <div class="spacer-sm"></div>
-
-    <p>Success looks like this. <strong>A quiet sense of independence and options.</strong> When shocks hit, I'm positioned to move, not just absorb them. Income, ideas and opportunities keep flowing in.</p>
-
-    <div class="spacer-sm"></div>
-
-    <p>I could step back for 12 months - hit the road in a caravan, or just be a stay-at-home dad for a while. But I'd probably end up doing this anyway. Directionally, I like what I do: helping businesses grow and sort themselves out, fast.</p>
-
-
+    </div>
 
   </div>
 
