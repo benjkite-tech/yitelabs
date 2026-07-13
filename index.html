@@ -44,7 +44,7 @@
       background: var(--ground);
       color: var(--ink);
       font-family: 'Space Grotesk', sans-serif;
-      font-weight: 300;
+      font-weight: 400;
       line-height: 1.7;
       -webkit-font-smoothing: antialiased;
       display: flex;
@@ -228,7 +228,7 @@
 
     p {
       font-size: 16px;
-      font-weight: 300;
+      font-weight: 400;
       color: var(--ash);
       line-height: 1.8;
     }
@@ -299,7 +299,7 @@
 
     .exp-item-desc {
       font-size: 14px;
-      font-weight: 300;
+      font-weight: 400;
       color: var(--ash);
       line-height: 1.65;
     }
@@ -348,7 +348,7 @@
 
     .substack-desc {
       font-size: 14px;
-      font-weight: 300;
+      font-weight: 400;
       color: var(--ash);
     }
 
@@ -381,7 +381,7 @@
       letter-spacing: -0.01em;
       margin-bottom: 4px;
     }
-    .wi-sub { font-size: 14px; font-weight: 300; color: var(--ash); line-height: 1.6; }
+    .wi-sub { font-size: 14px; font-weight: 400; color: var(--ash); line-height: 1.6; }
     .wi-date {
       font-family: 'Space Mono', monospace;
       font-size: 9px;
@@ -419,10 +419,20 @@
 
     .muscle-desc {
       font-size: 14px;
-      font-weight: 300;
+      font-weight: 400;
       color: var(--ash);
       line-height: 1.7;
     }
+
+    .email-link {
+      font-size: 18px;
+      color: var(--ember);
+      text-decoration: none;
+      border-bottom: 1px solid var(--chalk);
+      padding-bottom: 2px;
+      transition: border-color 0.15s;
+    }
+    .email-link:hover { border-color: var(--ember); }
 
     .cta-row {
       display: flex;
@@ -448,7 +458,7 @@
     /* ── INVESTING ── */
     .investing-body {
       font-size: 16px;
-      font-weight: 300;
+      font-weight: 400;
       color: var(--ash);
       line-height: 1.9;
       max-width: 600px;
@@ -457,6 +467,24 @@
     .investing-body em { color: var(--harvest); font-style: normal; }
 
     /* ── HERO (Vision default) ── */
+    #panel-vision { position: relative; }
+    .hero-kite {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      width: 200px;
+      height: auto;
+      opacity: 0.16;
+      pointer-events: none;
+      z-index: 0;
+    }
+    #panel-vision > .site-intro,
+    #panel-vision > .signposts { position: relative; z-index: 1; }
+
+    @media (max-width: 900px) {
+      .hero-kite { width: 130px; opacity: 0.1; top: 0.5rem; right: 0; }
+    }
+
     .site-intro {
       padding-bottom: 2.5rem;
       margin-bottom: 0.5rem;
@@ -472,7 +500,7 @@
     }
 
     .site-tagline {
-      font-size: 17px;
+      font-size: 18px;
       font-weight: 300;
       color: var(--ash);
       line-height: 1.7;
@@ -491,7 +519,7 @@
       align-items: center;
       justify-content: space-between;
       gap: 2rem;
-      padding: 1.4rem 0;
+      padding: 1.6rem 0;
       border-bottom: 0.5px solid var(--chalk);
       cursor: pointer;
       transition: opacity 0.15s;
@@ -499,18 +527,19 @@
     .signpost:last-child { border-bottom: none; }
     .signpost:hover { opacity: 0.65; }
     .signpost-name {
-      font-family: 'Space Mono', monospace;
-      font-size: 11px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 30px;
+      letter-spacing: 0.04em;
       color: var(--ink);
-      font-weight: 700;
-      margin-bottom: 3px;
+      line-height: 1;
+      margin-bottom: 7px;
+      display: flex;
+      align-items: center;
     }
-    .signpost-name .status-dot { margin-right: 9px; }
+    .signpost-name .status-dot { width: 8px; height: 8px; margin-right: 11px; top: 0; }
     .signpost-desc {
       font-size: 14px;
-      font-weight: 300;
+      font-weight: 400;
       color: var(--ash);
       line-height: 1.6;
     }
@@ -531,7 +560,7 @@
     }
     .principles li {
       font-size: 14px;
-      font-weight: 300;
+      font-weight: 400;
       color: var(--ash);
       line-height: 1.6;
       padding-left: 18px;
@@ -636,11 +665,23 @@
   <!-- VISION -->
   <div class="tab-panel active" id="panel-vision">
 
+    <svg class="hero-kite" viewBox="0 0 140 190" fill="none" aria-hidden="true">
+      <path d="M70 8 L124 68 L70 68 Z" fill="#E8501A"/>
+      <path d="M70 8 L16 68 L70 68 Z" fill="#1C0F08"/>
+      <path d="M70 68 L124 68 L70 118 Z" fill="#E4DDD0"/>
+      <path d="M70 68 L16 68 L70 118 Z" fill="#C8A830"/>
+      <line x1="16" y1="68" x2="124" y2="68" stroke="#FAF8F3" stroke-width="3" opacity="0.5"/>
+      <line x1="70" y1="8" x2="70" y2="118" stroke="#FAF8F3" stroke-width="3" opacity="0.5"/>
+      <path class="tail-string" d="M70 118 Q62 132 67 146 Q72 158 64 170" stroke="#1C0F08" stroke-width="2" fill="none" stroke-linecap="round"/>
+      <ellipse class="tail-bow-1" cx="64" cy="130" rx="9" ry="5" fill="#E8501A" transform="rotate(-22 64 130)"/>
+      <ellipse class="tail-bow-2" cx="66" cy="151" rx="9" ry="5" fill="#1A7A4A" transform="rotate(18 66 151)"/>
+    </svg>
+
     <div class="site-intro">
       <div class="site-name">BEN KITE,<br>MELBOURNE.</div>
       <p class="site-tagline"><strong>Yite Labs is my studio.</strong> I consult on strategy, ops and AI transformation, build tools, write, and take the odd bet.</p>
       <div class="spacer-sm"></div>
-      <p class="site-tagline">The thesis: movement creates opportunity, and everything worth doing leaves a trail. Have a look around.</p>
+      <p class="site-tagline">The bet: movement creates opportunity. The work, the tools and the thinking all live here. Have a look around.</p>
     </div>
 
     <div class="signposts">
@@ -686,7 +727,7 @@
 
     <div class="label">Experiments + tools</div>
     <div class="spacer-sm"></div>
-    <p>Things I've built for fun, learning or helping others.</p>
+    <p>Things I've built for fun, learning or helping others. Ship first, polish later - so expect a range of maturity. All free to use.</p>
 
     <div class="spacer-md"></div>
 
@@ -878,11 +919,6 @@
 
     <hr/>
 
-    <div class="cta-row">
-      <a href="https://www.linkedin.com/in/ben-kite-90001364/" target="_blank" rel="noopener noreferrer" class="work-cta">Full background on LinkedIn ↗</a>
-      <a href="https://github.com/benjkite-tech" target="_blank" rel="noopener noreferrer" class="work-cta">Projects and code on GitHub ↗</a>
-    </div>
-
     <hr/>
 
     <div class="label">Working together</div>
@@ -892,7 +928,18 @@
 
     <div class="spacer-sm"></div>
 
-    <p>If there's something messy ahead - growth, change, AI adoption - happy to have a look. <a href="mailto:benj.kite@gmail.com" style="color: var(--ember); text-decoration: underline;">Say hello</a>.</p>
+    <p>Got something messy ahead? Growth, change, AI adoption - happy to take a look. And I'm always up for a chat, even if there's no work in it.</p>
+
+    <div class="spacer-sm"></div>
+
+    <p><a href="mailto:benj.kite@gmail.com" class="email-link">benj.kite@gmail.com</a></p>
+
+    <hr/>
+
+    <div class="cta-row">
+      <a href="https://www.linkedin.com/in/ben-kite-90001364/" target="_blank" rel="noopener noreferrer" class="work-cta">Full background on LinkedIn ↗</a>
+      <a href="https://github.com/benjkite-tech" target="_blank" rel="noopener noreferrer" class="work-cta">Projects and code on GitHub ↗</a>
+    </div>
 
   </div>
 
