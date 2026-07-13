@@ -1,0 +1,1000 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Operator’s AI Glossary | Yite Labs</title>
+  <meta name="description" content="A no-circus guide to the AI terms that matter when you actually have to buy, build or run this stuff.">
+  <style>
+    :root {
+      --bg: #faf7ef;
+      --ink: #1d140f;
+      --muted: #675b51;
+      --line: rgba(29, 20, 15, 0.14);
+      --card: #fffdf8;
+      --card-soft: #f3eadc;
+      --accent: #e85d2a;
+      --accent-dark: #7b2e18;
+      --green: #53654c;
+      --shadow: 0 20px 60px rgba(29, 20, 15, 0.10);
+      --radius: 24px;
+      --max: 1180px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(232, 93, 42, 0.12), transparent 34rem),
+        radial-gradient(circle at 90% 12%, rgba(83, 101, 76, 0.13), transparent 28rem),
+        var(--bg);
+      color: var(--ink);
+      line-height: 1.52;
+    }
+    a { color: inherit; }
+    .shell { width: min(var(--max), calc(100% - 32px)); margin: 0 auto; }
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(250, 247, 239, 0.86);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav {
+      min-height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+    .brand {
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      font-size: 1.08rem;
+    }
+    .updated {
+      color: var(--muted);
+      font-size: 0.88rem;
+      margin-left: 12px;
+      font-weight: 500;
+      letter-spacing: 0;
+    }
+    .links { display: flex; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+    .links a {
+      color: var(--muted);
+      text-decoration: none;
+      padding: 8px 10px;
+      border-radius: 999px;
+      font-size: 0.92rem;
+    }
+    .links a:hover { background: rgba(29, 20, 15, 0.07); color: var(--ink); }
+    .hero {
+      padding: clamp(64px, 10vw, 110px) 0 48px;
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 8px 12px;
+      margin-bottom: 22px;
+      color: var(--muted);
+      background: rgba(255,255,255,.42);
+      font-size: .9rem;
+    }
+    .eyebrow::before {
+      content: "";
+      width: 8px; height: 8px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+    h1 {
+      font-size: clamp(3.25rem, 9vw, 8.4rem);
+      line-height: .86;
+      letter-spacing: -0.085em;
+      margin: 0;
+      max-width: 980px;
+    }
+    .subtitle {
+      margin-top: 28px;
+      max-width: 850px;
+    }
+    .subtitle p {
+      margin: 0;
+      color: var(--muted);
+      font-size: clamp(1.12rem, 2vw, 1.45rem);
+    }
+    .content-section {
+      padding: 52px 0;
+      border-top: 1px solid var(--line);
+    }
+    .section-kicker {
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: .14em;
+      font-size: .75rem;
+      font-weight: 900;
+      margin-bottom: 12px;
+    }
+    h2 {
+      font-size: clamp(2rem, 4.2vw, 4rem);
+      line-height: .96;
+      letter-spacing: -0.06em;
+      margin: 0 0 16px;
+      max-width: 920px;
+    }
+    .lead {
+      color: var(--muted);
+      max-width: 800px;
+      font-size: 1.08rem;
+      margin: 0 0 26px;
+    }
+    .table-wrap {
+      overflow-x: auto;
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      background: var(--card);
+      box-shadow: 0 12px 30px rgba(29, 20, 15, 0.05);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 720px;
+    }
+    th, td {
+      text-align: left;
+      vertical-align: top;
+      padding: 16px 18px;
+      border-bottom: 1px solid var(--line);
+    }
+    tr:last-child th, tr:last-child td { border-bottom: 0; }
+    th {
+      width: 26%;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      background: rgba(244,234,220,.45);
+    }
+    td { color: var(--muted); }
+    .quote {
+      margin-top: 24px;
+      background: var(--ink);
+      color: var(--bg);
+      border-radius: 30px;
+      padding: clamp(26px, 5vw, 48px);
+      font-size: clamp(1.55rem, 3.5vw, 3.2rem);
+      line-height: 1;
+      letter-spacing: -0.06em;
+      font-weight: 900;
+    }
+    .compressed {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+    .mini-card, .change-card, .dist-card, .term-card {
+      background: rgba(255, 253, 248, .88);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: 0 12px 30px rgba(29, 20, 15, 0.045);
+    }
+    .mini-card {
+      padding: 20px;
+    }
+    .mini-card h3 {
+      margin: 0 0 8px;
+      font-size: 1.12rem;
+      letter-spacing: -0.04em;
+    }
+    .mini-card p { margin: 0; color: var(--muted); }
+    .change-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+    .change-card {
+      padding: 22px;
+    }
+    .change-card h3 {
+      margin: 0 0 12px;
+      letter-spacing: -0.04em;
+    }
+    .change-card ul {
+      margin: 0;
+      padding-left: 1.1rem;
+      color: var(--muted);
+    }
+    .change-card li { margin: 8px 0; }
+    .term-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+    .term-card {
+      padding: 24px;
+    }
+    .term-card h3 {
+      margin: 0 0 10px;
+      font-size: 1.6rem;
+      line-height: 1;
+      letter-spacing: -0.055em;
+    }
+    .definition {
+      margin: 0 0 18px;
+      color: var(--muted);
+      font-size: 1.02rem;
+    }
+    .term-section { margin-top: 14px; }
+    .term-section span {
+      display: inline-flex;
+      text-transform: uppercase;
+      letter-spacing: .13em;
+      color: var(--accent);
+      font-size: .68rem;
+      font-weight: 900;
+      margin-bottom: 6px;
+    }
+    .term-section p {
+      margin: 0;
+      color: var(--muted);
+    }
+    .owner {
+      border-top: 1px solid var(--line);
+      padding-top: 14px;
+    }
+    .owner span {
+      color: var(--green);
+    }
+    .dist-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+    .dist-card {
+      padding: 22px;
+    }
+    .dist-card h3 {
+      margin: 0 0 8px;
+      letter-spacing: -0.04em;
+    }
+    .dist-card p {
+      margin: 0;
+      color: var(--muted);
+    }
+    .loop-words {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-bottom: 26px;
+    }
+    .loop-word {
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: var(--card-soft);
+      padding: 18px;
+    }
+    .loop-word strong {
+      display: block;
+      letter-spacing: -0.04em;
+      font-size: 1.2rem;
+      margin-bottom: 4px;
+    }
+    .loop-word span { color: var(--muted); }
+    .remember-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 14px;
+    }
+    .remember-card {
+      background: var(--ink);
+      color: var(--bg);
+      border-radius: 22px;
+      min-height: 230px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+    }
+    .remember-card span {
+      color: var(--accent);
+      font-weight: 900;
+      font-size: 2.3rem;
+      line-height: 1;
+    }
+    .remember-card h3 {
+      margin: auto 0 10px;
+      font-size: 1.1rem;
+      letter-spacing: -0.04em;
+    }
+    .remember-card p {
+      color: rgba(250,247,239,.72);
+      margin: 0;
+      font-size: .94rem;
+    }
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 34px 0;
+      color: var(--muted);
+      font-size: .92rem;
+    }
+    @media (max-width: 960px) {
+      header { position: static; }
+      .links { display: none; }
+      .compressed, .change-grid, .dist-grid, .remember-grid, .loop-words { grid-template-columns: repeat(2, 1fr); }
+      .term-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 620px) {
+      .shell { width: min(100% - 22px, var(--max)); }
+      .hero { padding-top: 54px; }
+      h1 { font-size: clamp(3.1rem, 18vw, 5.2rem); }
+      .compressed, .change-grid, .dist-grid, .remember-grid, .loop-words { grid-template-columns: 1fr; }
+      .remember-card { min-height: 170px; }
+      th, td { padding: 14px; }
+      .updated { display:block; margin-left:0; margin-top:2px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="shell nav">
+      <div class="brand">Yite Labs <span class="updated">Last updated: 9 July 2026</span></div>
+      <nav class="links" aria-label="Page navigation">
+        <a href="#index">Index</a>
+        <a href="#stack">Stack</a>
+        <a href="#engine">Engine</a>
+        <a href="#harness">Harness</a>
+        <a href="#work">Work</a>
+        <a href="#operating">Operating model</a>
+        <a href="#timeline">Timeline</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero shell">
+      <div class="eyebrow">Operator reference</div>
+      <h1>The Operator’s AI Glossary</h1>
+      <div class="subtitle">
+        <p>A no-circus guide to the AI terms that matter when you actually have to buy, build or run this stuff.</p>
+      </div>
+    </section>
+
+    <section class="content-section" id="index">
+      <div class="shell">
+        <div class="section-kicker">Start here</div>
+        <h2>The operator’s index</h2>
+        <p class="lead">Jump to the situation you are in. Every term gets a plain definition and an example.</p>
+        <div class="table-wrap">
+          <table>
+            <tbody>
+              <tr><th>Evaluating vendors</th><td>LLM, open-weights, fine-tuning, context window, tokens, memory, model optionality</td></tr>
+<tr><th>Designing systems</th><td>Harness, retrieval, structured outputs, data use and retention, tools, MCP, skills, guardrails, evals, auditability</td></tr>
+<tr><th>Mapping processes</th><td>Workflow, agent, state, routing, orchestrator, human-in-the-loop</td></tr>
+<tr><th>Changing how the company runs</th><td>Rented vs owned intelligence, loop, company brain, human-on-the-loop, AI native</td></tr>
+<tr><th>Talking to execs</th><td>Model, harness, workflow, agent, loop, company brain</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section" id="stack">
+      <div class="shell">
+        <div class="section-kicker">The stack</div>
+        <h2>Modern AI systems are a stack, not a single magic box.</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Layer</th><th>What it means</th><th>Why it matters</th></tr>
+            </thead>
+            <tbody>
+              <tr><th><a href='#engine'>AI Engine Room</a></th><td>The model, prompts, context, memory, tokens, open-weights and tuning settings.</td><td>Raw capability lives here.</td></tr>
+<tr><th><a href='#harness'>AI Harness</a></th><td>The wrapper that makes the model useful, safe and repeatable.</td><td>Capability without control becomes chaos.</td></tr>
+<tr><th><a href='#work'>How Work Moves</a></th><td>The workflows, agents, routing and orchestration patterns that move work through people, tools and process steps.</td><td>Better-designed work beats better tools.</td></tr>
+<tr><th><a href='#operating'>AI-shaped Operating Model</a></th><td>How AI changes the company’s loops, not just individual tasks.</td><td>Loops create compounding value.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="quote">The model gives you capability. The harness gives you control. The workflow gives you repeatability. The loop gives you business value.</div>
+      </div>
+    </section>
+<section class="content-section">
+      <div class="shell">
+        <div class="section-kicker">Why this wave is different</div>
+        <h2>New capability. Old discipline. Same accountability.</h2>
+        <div class="change-grid">
+          <div class="change-card">
+            <h3>New at useful scale</h3>
+            <ul>
+              <li>Models can read messy inputs.</li>
+              <li>Models can call tools.</li>
+              <li>Models can operate across workflows.</li>
+              <li>Models can be supervised at scale.</li>
+            </ul>
+          </div>
+          <div class="change-card">
+            <h3>Old, newly important</h3>
+            <ul>
+              <li>Guardrails</li>
+              <li>Routing</li>
+              <li>Evals</li>
+              <li>Auditability</li>
+              <li>Permissions</li>
+              <li>Ops discipline</li>
+            </ul>
+          </div>
+          <div class="change-card">
+            <h3>Unchanged</h3>
+            <ul>
+              <li>Humans own accountability.</li>
+              <li>Humans own judgement.</li>
+              <li>Humans own system design.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+<section class="content-section">
+      <div class="shell">
+        <div class="section-kicker">Loop language</div>
+        <h2>Monitor. Decide. Act. Learn.</h2>
+        <p class="lead">A loop is the operating cycle where AI becomes more than a one-off productivity trick.</p>
+        <div class="loop-words">
+          <div class="loop-word"><strong>Monitor</strong><span>See change.</span></div>
+          <div class="loop-word"><strong>Decide</strong><span>Choose response.</span></div>
+          <div class="loop-word"><strong>Act</strong><span>Move work.</span></div>
+          <div class="loop-word"><strong>Learn</strong><span>Update system.</span></div>
+        </div>
+      </div>
+    </section>
+
+    
+<section class="content-section glossary-section" id="engine">
+  <div class="section-kicker">AI Engine Room</div>
+  <h2>The model, prompts, context, memory, tokens, open-weights and tuning settings.</h2>
+  <p class="lead">Raw capability lives here.</p>
+  <div class="term-grid">
+    
+    <article class="term-card" id="llm">
+      <h3>LLM</h3>
+      <p class="definition">A large language model. The engine behind most modern AI assistants. It understands and generates language, writes code, reasons over context and can be connected to multimodal systems for images, audio, prototypes and other outputs.</p>
+      <div class="term-section">
+        <span>Example</span>
+        <p>Group 3,000 customer complaints into themes, then draft the first version of a customer issue report.</p>
+      </div>
+    </article>
+    
+    <article class="term-card" id="prompt">
+      <h3>Prompt</h3>
+      <p class="definition">The instruction you give the model. It can include the task, context, tone, examples, constraints and output format.</p>
+      <div class="term-section">
+        <span>Example</span>
+        <p>Draft weekly revenue commentary for the exec team. Use plain language. Explain what changed, why it changed, and what needs a decision.</p>
+      </div>
+    </article>
+    
+    <article class="term-card" id="context">
+      <h3>Context</h3>
+      <p class="definition">The information the model can see while doing the task. Context is about relevance and quality.</p>
+      <div class="term-section">
+        <span>Example</span>
+        <p>Draft a renewal risk note using CRM history, product usage, support tickets, contract terms and the account owner’s notes.</p>
+      </div>
+    </article>
+    
+    <article class="term-card" id="context-window">
+      <h3>Context window</h3>
+      <p class="definition">The amount of information the model can hold in view during one task. Context is quality. Context window is capacity.</p>
+      <div class="term-section">
+        <span>Example</span>
+        <p>Analyse a contract pack, policy, pricing appendix and email thread together before drafting a negotiation summary.</p>
+      </div>
+    </article>
+    
+    <article class="term-card" id="tokens">
+      <h3>Tokens</h3>
+      <p class="definition">Chunks of text or data the model reads and writes. Tokens affect cost, speed and capacity.</p>
+      <div class="term-section">
+        <span>Example</span>
+        <p>A support bot processing thousands of long customer messages can become expensive fast if every query sends the whole knowledge base.</p>
+      </div>
+    </article>
+    
+    <article class="term-card" id="memory">
+      <h3>Memory</h3>
+      <p class="definition">Information the AI can retain, retrieve or reuse so it does not start from scratch every time.</p>
+      <div class="term-section">
+        <span>Example</span>
+        <p>Remember the company’s board pack structure, preferred commentary style and recurring metrics.</p>
+      </div>
+    </article>
+    
+    
+    <article class="term-card" id="open-weights">
+      <h3>Open-weights</h3>
+      <p class="definition">A model where the trained weights are available to download and run under a licence. It is not always the same as open-source. You may not get the training data, training code or full recipe.</p>
+      <div class="term-section">
+        <span>Example</span>
+        <p>Host an open-weight model inside your own cloud environment to process sensitive customer or patient records without sending every request to a third-party model API.</p>
+      </div>
+    </article>
+    
+    <article class="term-card" id="fine-tuning">
+      <h3>Fine-tuning</h3>
+      <p class="definition">Taking an existing model and training it further on your own examples, so it gets better at a specific style, domain or task pattern. RAG helps the model look up facts. Fine-tuning changes how the model behaves.</p>
+      <div class="term-section">
+        <span>Example</span>
+        <p>Fine-tune a model on thousands of approved support replies so it learns the company’s tone, escalation style and resolution patterns.</p>
+      </div>
+    
+      <div class="term-section owner">
+        <span>Owner</span>
+        <p>Use-case owner defines the goal. Data owner approves the dataset. AI/data team owns the tuning run and evaluation.</p>
+      </div>
+    </article>
+<article class="term-card" id="hallucination">
+      <h3>Hallucination</h3>
+      <p class="definition">When the model produces something confident and wrong: a fact, a number, a source, a policy that does not exist. Not a bug you patch once. A property you design around.</p>
+      <div class="term-section">
+        <span>Example</span>
+        <p>An AI drafts a supplier risk summary that cites a contract clause the contract does not contain.</p>
+      </div>
+    </article>
+    
+  </div>
+</section>
+
+
+<section class="content-section glossary-section" id="harness">
+  <div class="section-kicker">AI Harness</div>
+  <h2>The wrapper that makes the model useful, safe and repeatable.</h2>
+  <p class="lead">Capability without control becomes chaos.</p>
+  <div class="term-grid">
+    
+    <article class="term-card" id="harness">
+      <h3>Harness</h3>
+      <p class="definition">The wrapper around the model. It can include prompts, context, retrieval, tools, permissions, skills, evals, guardrails, logs and human review points.</p>
+      <div class="term-section">
+        <span>Example</span>
+        <p>A support harness reads the customer issue, retrieves policy, checks order status, drafts a response, escalates risk and records the outcome.</p>
+      </div>
+    
+      <div class="term-section owner">
+        <span>Owner</span>
+        <p>AI builder owns the technical wrapper. Business owner owns whether it works in the real workflow.</p>
+      </div>
+    </article>
+    
+    <article class="term-card" id="rag-retrieval">
+      <h3>RAG / Retrieval</h3>
+      <p class="definition">Retrieval augmented generation. The AI looks up relevant information from trusted sources before answering, instead of relying only on the model’s training.</p>
+      <div class="term-section">
+        <span>Example</span>
+        <p>Answer customer questions using approved help docs, product rules and current policy, not whatever the model thinks sounds plausible.</p>
+      </div>
+    
+      <div class="term-section owner">
+        <span>Owner</span>
+        <p>Business owner owns answer quality. Knowledge owner owns source material. AI/data/engineering owns retrieval, index quality and refresh cadence. Security owns access rules.</p>
+      </div>
+    </article>
+    
+    <article class="term-card" id="tools">
+      <h3>Tools</h3>
+      <p class="definition">Connected functions the model can request to look something up, run a calculation, use a system or take an action. Vendors may call this tool calling or function calling.</p>
+      <div class="term-section">
+        <span>Example</span>
+        <p>Check order status, query Salesforce, run code, create a Jira ticket, update a spreadsheet or draft an email.</p>
+      </div>
+    
+      <div class="term-section owner">
+        <span>Owner</span>
+        <p>Engineering / IT owns the integration. System owners approve access. Security sets the rules.</p>
+      </div>
+    </article>
+    
+    
+    <article class="term-card" id="structured-outputs">
+      <h3>Structured outputs</h3>
+      <p class="definition">A way to force the model to respond in a machine-readable format, such as JSON, instead of loose conversational prose.</p>
+      <div class="term-section">
+        <span>Example</span>
+        <p>Make an invoice reader return {&quot;amount&quot;: 100.00, &quot;currency&quot;: &quot;AUD&quot;, &quot;supplier&quot;: &quot;Example Co&quot;} so the accounting system can process it.</p>
+      </div>
+    
+      <div class="term-section owner">
+        <span>Owner</span>
+        <p>Engineering or product owner owns the schema. Use-case owner validates whether the output is fit for work.</p>
+      </div>
+    </article>
+    
+    <article class="term-card" id="data-use-and-retention">
+      <h3>Data use and retention</h3>
+      <p class="definition">The rules for how prompts, outputs, files and customer information are stored, logged, retained, accessed and used by the vendor. ZDR is one version of this, usually under specific enterprise or API terms.</p>
+      <div class="term-section">
+        <span>Example</span>
+        <p>Before connecting customer data to a model, legal and security confirm what the vendor can store, log, retain, access and use for training.</p>
+      </div>
+    
+      <div class="term-section owner">
+        <span>Owner</span>
+        <p>Security, legal and procurement own vendor terms. Data owner decides what information can enter the system.</p>
+      </div>
+    </article>
+    
+    <article class="term-card" id="mcp">
+      <h3>MCP</h3>
+      <p class="definition">Model Context Protocol. A standard way for AI tools to connect to company systems and data, instead of every integration being custom plumbing.</p>
+      <div class="term-section">
+        <span>Example</span>
+        <p>Connect an AI assistant to Google Drive, Slack, GitHub, Postgres or other systems through MCP servers.</p>
+      </div>
+    
+      <div class="term-section owner">
+        <span>Owner</span>
+        <p>Engineering / IT owns the connection pattern. System owners approve access. Security owns permissions and data boundaries.</p>
+      </div>
+    </article>
+    
+    <article class="term-card" id="skills">
+      <h3>Skills</h3>
+      <p class="definition">Reusable packages of instructions, resources and sometimes code that teach AI how to do a specific kind of work. Anthropic’s Agent Skills are one version of this pattern. Do not assume every platform supports skills the same way.</p>
+      <div class="term-section">
+        <span>Example</span>
+        <p>A board pack skill includes structure, tone, chart rules, financial commentary style, common checks and output format.</p>
+      </div>
+    </article>
+    
+    <article class="term-card" id="guardrails">
+      <h3>Guardrails</h3>
+      <p class="definition">Rules and checks that stop AI from doing the wrong thing.</p>
+      <div class="term-section">
+        <span>Example</span>
+        <p>AI can draft refund replies under $100, but cannot issue refunds without approval.</p>
+      </div>
+    
+      <div class="term-section owner">
+        <span>Owner</span>
+        <p>Risk, legal, compliance and the process owner define the rules. AI/platform team implements them.</p>
+      </div>
+    </article>
+    
+    <article class="term-card" id="evals">
+      <h3>Evals</h3>
+      <p class="definition">Tests that measure whether the AI is doing the job well enough.</p>
+      <div class="term-section">
+        <span>Example</span>
+        <p>Test support replies for accuracy, policy compliance, tone, escalation quality and customer impact.</p>
+      </div>
+    
+      <div class="term-section owner">
+        <span>Owner</span>
+        <p>Use-case owner defines what good looks like. AI/data team builds the tests. Quality owner monitors performance.</p>
+      </div>
+    </article>
+    
+    <article class="term-card" id="auditability-lineage">
+      <h3>Auditability / lineage</h3>
+      <p class="definition">The ability to trace what happened: what the user asked, what context was retrieved, what model was used, what tool calls were made, what output was produced, and what human approved or changed.</p>
+      <div class="term-section">
+        <span>Example</span>
+        <p>A customer receives the wrong refund outcome. The team can inspect the original message, retrieved refund policy, model version, tool output, approval step and final response.</p>
+      </div>
+    
+      <div class="term-section owner">
+        <span>Owner</span>
+        <p>AI/platform team owns traceability. Risk, compliance and process owners define what needs to be explainable.</p>
+      </div>
+    </article>
+    
+  </div>
+</section>
+
+
+<section class="content-section glossary-section" id="work">
+  <div class="section-kicker">How Work Moves</div>
+  <h2>The workflows, agents, routing and orchestration patterns that move work through people, tools and process steps.</h2>
+  <p class="lead">Better-designed work beats better tools.</p>
+  <div class="term-grid">
+    
+    <article class="term-card" id="workflow">
+      <h3>Workflow</h3>
+      <p class="definition">A designed path for how work moves through people, tools and process steps, with AI doing specific tasks at specific points.</p>
+      <div class="term-section">
+        <span>Example</span>
+        <p>Supplier risk process: ingest vendor info → check policy → draft risk summary → flag exceptions → procurement approves.</p>
+      </div>
+    
+      <div class="term-section owner">
+        <span>Owner</span>
+        <p>Ops/process owner owns the work design. AI builder owns the AI behaviour inside it. Frontline users validate reality.</p>
+      </div>
+    </article>
+    
+    <article class="term-card" id="agent">
+      <h3>Agent</h3>
+      <p class="definition">A system you hand a goal, not a path. It decides the steps, picks the tools, acts, checks the result and adjusts as it goes.</p>
+      <div class="term-section">
+        <span>Example</span>
+        <p>Investigate why revenue was down last week. Check dashboards, compare segments, inspect CRM notes and draft likely causes.</p>
+      </div>
+    
+      <div class="term-section owner">
+        <span>Owner</span>
+        <p>Use-case owner owns the goal and boundaries. AI builder owns system behaviour. Humans own approvals and exceptions.</p>
+      </div>
+    </article>
+    
+    
+    <article class="term-card" id="state-state-management">
+      <h3>State / state management</h3>
+      <p class="definition">The system’s record of what has happened so far in a multi-step task. State lets the system continue, recover or audit a workflow without starting from scratch.</p>
+      <div class="term-section">
+        <span>Example</span>
+        <p>An agent pauses halfway through a supplier audit, then resumes at the policy exception step with the previous checks still intact.</p>
+      </div>
+    
+      <div class="term-section owner">
+        <span>Owner</span>
+        <p>Engineering owns state persistence. Process owner owns what must be remembered, resumed or audited.</p>
+      </div>
+    </article>
+    
+    <article class="term-card" id="orchestrator">
+      <h3>Orchestrator</h3>
+      <p class="definition">The active traffic controller that coordinates multiple steps, models, tools or workers inside the harness.</p>
+      <div class="term-section">
+        <span>Example</span>
+        <p>One AI checks finance data, another summarises customer metrics, another drafts commentary, and the orchestrator combines the pack.</p>
+      </div>
+    
+      <div class="term-section owner">
+        <span>Owner</span>
+        <p>AI/platform owner owns orchestration logic. Process owner owns whether the steps match real work.</p>
+      </div>
+    </article>
+    
+    <article class="term-card" id="routing">
+      <h3>Routing</h3>
+      <p class="definition">Sending different work down different paths based on type, risk, cost or complexity.</p>
+      <div class="term-section">
+        <span>Example</span>
+        <p>Simple questions go to a cheaper model. Refund complaints go to a controlled workflow. Legal threats go straight to a human.</p>
+      </div>
+    
+      <div class="term-section owner">
+        <span>Owner</span>
+        <p>Ops/process owner defines routing rules. AI/data team implements them. Risk owner defines escalation thresholds.</p>
+      </div>
+    </article>
+    
+  </div>
+</section>
+
+
+<section class="content-section glossary-section" id="operating">
+  <div class="section-kicker">AI-shaped Operating Model</div>
+  <h2>How AI changes the company’s loops, not just individual tasks.</h2>
+  <p class="lead">Loops create compounding value.</p>
+  <div class="term-grid">
+    
+    
+    <article class="term-card" id="rented-vs-owned-intelligence">
+      <h3>Rented vs owned intelligence</h3>
+      <p class="definition">The choice between consuming AI as a vendor service and building AI capability into your own data, workflows, harnesses and learning loops. Renting buys speed. Owning builds advantage when the capability compounds through your data, workflow, feedback and operating loops.</p>
+      <div class="term-section">
+        <span>Example</span>
+        <p>Rented: paying a SaaS tool to draft customer replies. Owned: using your historical resolution data, internal harness and human corrections to improve a support loop your competitors cannot simply buy.</p>
+      </div>
+    
+      <div class="term-section owner">
+        <span>Owner</span>
+        <p>Executive and product/technology owners decide what must be owned. Finance and security test the cost, risk and control trade-offs.</p>
+      </div>
+    </article>
+    
+    <article class="term-card" id="loop">
+      <h3>Loop</h3>
+      <p class="definition">A repeating operating cycle where AI helps monitor, decide, act and learn.</p>
+      <div class="term-section">
+        <span>Example</span>
+        <p>Churn loop: monitor risk signals → decide next best action → draft intervention → track result → update playbook.</p>
+      </div>
+    
+      <div class="term-section owner">
+        <span>Owner</span>
+        <p>Executive owner sets the direction. Loop owner runs the cycle. Teams update the system as they learn.</p>
+      </div>
+    </article>
+    
+    <article class="term-card" id="company-brain">
+      <h3>Company brain</h3>
+      <p class="definition">The shared context layer that updates as the company works: decisions, rules, playbooks, customer understanding, metrics, permissions and lessons learned.</p>
+      <div class="term-section">
+        <span>Example</span>
+        <p>A churn loop spots a pattern in failed onboarding. The company brain updates the product-risk context, customer success playbook and future renewal prompts, so the next interaction starts smarter.</p>
+      </div>
+    
+      <div class="term-section owner">
+        <span>Owner</span>
+        <p>Executive owner sets the standard. Knowledge, data and process owners keep the shared context useful and current.</p>
+      </div>
+    </article>
+    
+    <article class="term-card" id="human-in-the-loop">
+      <h3>Human-in-the-loop</h3>
+      <p class="definition">A person checks or approves the AI’s work before action is taken.</p>
+      <div class="term-section">
+        <span>Example</span>
+        <p>AI drafts a supplier risk summary. Procurement reviews before sending or acting.</p>
+      </div>
+    
+      <div class="term-section owner">
+        <span>Owner</span>
+        <p>Process owner decides where approval is required. Human approvers own the decision they approve.</p>
+      </div>
+    </article>
+    
+    <article class="term-card" id="human-on-the-loop">
+      <h3>Human-on-the-loop</h3>
+      <p class="definition">A person supervises the system rather than approving every step.</p>
+      <div class="term-section">
+        <span>Example</span>
+        <p>AI resolves low-risk support tickets. Humans review samples, exceptions, escalations and performance metrics.</p>
+      </div>
+    
+      <div class="term-section owner">
+        <span>Owner</span>
+        <p>Process owner owns supervision design. Quality/risk owners monitor drift, exceptions and performance.</p>
+      </div>
+    </article>
+    
+    <article class="term-card" id="model-optionality">
+      <h3>Model optionality</h3>
+      <p class="definition">The ability to use different models for different jobs based on cost, speed, quality, privacy and reliability.</p>
+      <div class="term-section">
+        <span>Example</span>
+        <p>Use a cheaper model for classification, a stronger model for synthesis, and a private model for sensitive work.</p>
+      </div>
+    
+      <div class="term-section owner">
+        <span>Owner</span>
+        <p>AI/product/technology owner owns model strategy. Procurement, finance and security test vendor risk, cost and privacy.</p>
+      </div>
+    </article>
+    
+    <article class="term-card" id="ai-native">
+      <h3>AI native</h3>
+      <p class="definition">A product, workflow or company designed around AI from the start, rather than adding AI onto an existing process. The simple test: if AI were removed, the thing would not just get slower. It would stop making sense.</p>
+      <div class="term-section">
+        <span>Example</span>
+        <p>An AI-native support business might have agents triage, draft, resolve, escalate, learn from outcomes and improve the knowledge base, with humans supervising exceptions and high-trust moments.</p>
+      </div>
+    </article>
+    
+  </div>
+</section>
+
+
+    <section class="content-section" id="distinctions">
+      <div class="shell">
+        <div class="section-kicker">Useful distinctions</div>
+        <h2>Words that look similar, but change the decision.</h2>
+        <div class="dist-grid">
+<article class="dist-card">
+  <h3>Harness vs orchestrator</h3>
+  <p>The harness is the infrastructure that makes AI safe and usable. The orchestrator is the traffic controller that moves work between models, tools, workers and steps.</p>
+</article>
+
+
+<article class="dist-card">
+  <h3>AI-enabled vs AI-native</h3>
+  <p>AI-enabled means AI has been added to an existing process. AI-native means the process was designed around AI.</p>
+</article>
+
+
+<article class="dist-card">
+  <h3>Model vs harness</h3>
+  <p>The model is raw capability. The harness makes it useful, safe and repeatable.</p>
+</article>
+
+
+<article class="dist-card">
+  <h3>Tool vs skill</h3>
+  <p>A tool lets AI do something. A skill teaches AI how to do a type of work well.</p>
+</article>
+
+
+<article class="dist-card">
+  <h3>MCP vs skills</h3>
+  <p>MCP connects AI to systems and data. Skills package the know-how for doing the work once connected. Connectivity and competence. You want both.</p>
+</article>
+
+
+
+<article class="dist-card">
+  <h3>Open vs closed models</h3>
+  <p>Closed models are proprietary services accessed through a vendor API or product. Open-weight models can be downloaded and self-hosted under a licence. Closed often wins for frontier capability and polish. Open-weight can win for cost control, privacy, sovereignty and high-volume workflows.</p>
+</article>
+
+<article class="dist-card">
+  <h3>Fine-tuning vs RAG</h3>
+  <p>RAG gives the model trusted information to look up. Fine-tuning changes how the model behaves. Do not fine-tune just to teach the model fast-changing facts.</p>
+</article>
+
+<article class="dist-card">
+  <h3>Rented vs owned intelligence</h3>
+  <p>Rented AI gives you speed. Owned AI gives you a chance to compound around your own data, workflow, feedback and operating loops. Not every AI use case needs to be owned.</p>
+</article>
+
+<article class="dist-card">
+  <h3>Workflow vs agent</h3>
+  <p>A workflow follows a designed path. An agent is handed a goal and works out the path.</p>
+</article>
+
+
+<article class="dist-card">
+  <h3>Dashboard vs loop</h3>
+  <p>A dashboard shows what happened. A loop helps monitor, decide, act and learn.</p>
+</article>
+
+
+<article class="dist-card">
+  <h3>Company knowledge vs company brain</h3>
+  <p>Company knowledge is stored information. A company brain makes that information usable in work, decisions and AI systems.</p>
+</article>
+
+
+<article class="dist-card">
+  <h3>Human-in-the-loop vs human-on-the-loop</h3>
+  <p>In-the-loop means a human approves before action. On-the-loop means a human supervises the system and handles exceptions.</p>
+</article>
+</div>
+      </div>
+    </section>
+
+    <section class="content-section" id="timeline">
+      <div class="shell">
+        <div class="section-kicker">Receipts</div>
+        <h2>Where the language came from</h2>
+        <p class="lead">You do not need the history to use the map. But if someone asks, these are the dates I would stand behind.</p>
+        <div class="table-wrap">
+          <table>
+            <tbody>
+              <tr><th>2017</th><td>The Transformer paper introduced the architecture behind much of the modern LLM wave. <a href='https://arxiv.org/abs/1706.03762' target='_blank' rel='noopener'>Source</a></td></tr>
+<tr><th>2020</th><td>GPT-3 made large language models much more visible as systems that could follow plain-text instructions and examples. The same year, the RAG paper described combining a model with retrieval from an external index of trusted information. <a href='https://arxiv.org/abs/2005.14165' target='_blank' rel='noopener'>Source</a></td></tr>
+<tr><th>Late 2022</th><td>ChatGPT launched. For most operators, this was the point the board started asking questions. Around the same period, ReAct became an important research milestone for combining reasoning with actions. <a href='https://arxiv.org/abs/2210.03629' target='_blank' rel='noopener'>Source</a></td></tr>
+<tr><th>June 2023</th><td>OpenAI’s function calling release gave developers a more reliable way to connect models to external tools. The same API update included a 16k context version of GPT-3.5 Turbo, referenced GPT-4 32k models, and pointed developers toward evals. <a href='https://openai.com/index/function-calling-and-other-api-updates/' target='_blank' rel='noopener'>Source</a></td></tr>
+<tr><th>November 2024</th><td>Anthropic introduced MCP as an open standard for connecting AI assistants to the systems where data lives. <a href='https://www.anthropic.com/news/model-context-protocol' target='_blank' rel='noopener'>Source</a></td></tr>
+<tr><th>December 2024</th><td>Anthropic’s “Building effective agents” set out the workflow vs agent distinction, plus patterns like routing and orchestrator-workers. <a href='https://www.anthropic.com/engineering/building-effective-agents' target='_blank' rel='noopener'>Source</a></td></tr>
+<tr><th>October 2025</th><td>Anthropic launched Agent Skills: folders of instructions, scripts and resources that agents can discover and load when relevant. <a href='https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills' target='_blank' rel='noopener'>Source</a></td></tr>
+<tr><th>December 2025</th><td>MCP was donated to the Agentic AI Foundation under the Linux Foundation. Anthropic also published Agent Skills as an open standard, with the aim of making skills more portable across platforms. <a href='https://www.wired.com/story/openai-anthropic-and-block-are-teaming-up-on-ai-agent-standards/' target='_blank' rel='noopener'>Source</a></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <div class="shell">
+        <div class="section-kicker">Remember this</div>
+        <h2>If you only remember five things</h2>
+        <div class="remember-grid">
+          <div class="remember-card"><span>1</span><h3>The model is not the system.</h3><p>The system is the model plus context, tools, rules, checks and ownership.</p></div>
+          <div class="remember-card"><span>2</span><h3>The harness is where most of the real work lives.</h3><p>Skip it and you ship chaos.</p></div>
+          <div class="remember-card"><span>3</span><h3>Not everything should be an agent.</h3><p>Sometimes a boring workflow is exactly what you want.</p></div>
+          <div class="remember-card"><span>4</span><h3>The loop is the prize.</h3><p>AI becomes valuable when it helps the business monitor, decide, act and learn faster.</p></div>
+          <div class="remember-card"><span>5</span><h3>Humans still own the hard bits.</h3><p>Direction, judgement, trust, accountability and taste become more important.</p></div>
+          <div class="remember-card"><span>6</span><h3>Renting buys a baseline.</h3><p>Owning builds advantage when the capability compounds through your data, workflow, feedback and operating loops.</p></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="shell">Yite Labs operator reference. Last updated: 9 July 2026.</div>
+  </footer>
+</body>
+</html>
