@@ -302,7 +302,7 @@
 
     /* Cover: swap the inline SVG for an img tag when real screenshots land */
     .lab-cover {
-      aspect-ratio: 300 / 170;
+      aspect-ratio: 16 / 8;
       overflow: hidden;
       border-bottom: 0.5px solid var(--chalk);
     }
@@ -397,24 +397,31 @@
     .writing-list { display: flex; flex-direction: column; }
 
     .writing-item {
-      padding: 1.5rem 0;
-      border-bottom: 0.5px solid var(--chalk);
+      background: var(--ground-2);
+      border: 0.5px solid var(--chalk);
+      border-radius: 8px;
+      padding: 1.4rem 1.6rem;
+      margin-bottom: 0.75rem;
       display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 2rem;
+      grid-template-columns: 92px 1fr auto;
+      gap: 1.75rem;
       align-items: start;
       text-decoration: none;
-      transition: opacity 0.15s;
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
     }
-    .writing-item:hover { opacity: 0.7; }
-    .writing-item:last-child { border-bottom: none; }
+    .writing-item:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(28, 15, 8, 0.06);
+    }
+    .writing-item:last-child { margin-bottom: 0; }
 
     .wi-title {
-      font-size: 17px;
-      font-weight: 500;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 24px;
+      letter-spacing: 0.03em;
+      line-height: 1.1;
       color: var(--ink);
-      letter-spacing: -0.01em;
-      margin-bottom: 5px;
+      margin-bottom: 6px;
     }
     .wi-sub { font-size: 14px; font-weight: 400; color: var(--ash); line-height: 1.6; }
     .wi-date {
@@ -423,8 +430,19 @@
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--ash);
-      flex-shrink: 0;
+      padding-top: 5px;
+    }
+    .wi-arrow {
+      font-size: 15px;
+      color: var(--ash);
       padding-top: 3px;
+      transition: color 0.15s, transform 0.15s;
+    }
+    .writing-item:hover .wi-arrow { color: var(--ember); transform: translateX(3px); }
+
+    @media (max-width: 700px) {
+      .writing-item { grid-template-columns: 1fr auto; gap: 1rem; }
+      .wi-date { grid-column: 1 / -1; padding-top: 0; margin-bottom: 6px; }
     }
 
     /* ── WORK ── */
@@ -435,14 +453,17 @@
     }
 
     .muscle {
-      padding: 1.5rem 0;
-      border-bottom: 0.5px solid var(--chalk);
+      background: var(--ground-2);
+      border: 0.5px solid var(--chalk);
+      border-radius: 8px;
+      padding: 1.5rem 1.6rem;
+      margin-bottom: 0.75rem;
       display: grid;
       grid-template-columns: 200px 1fr;
       gap: 2rem;
       align-items: start;
     }
-    .muscle:last-child { border-bottom: none; }
+    .muscle:last-child { margin-bottom: 0; }
 
     .muscle-name {
       font-family: 'Bebas Neue', sans-serif;
@@ -510,11 +531,11 @@
     /* Smaller mark on inner pages */
     .panel-kite {
       position: absolute;
-      top: 3.5rem;
-      right: 0.5rem;
-      width: 96px;
+      top: 5.5rem;
+      right: 1rem;
+      width: 88px;
       height: auto;
-      opacity: 0.18;
+      opacity: 0.16;
       pointer-events: none;
       z-index: 0;
     }
@@ -599,14 +620,17 @@
 
     /* Principle groups */
     .principle-group {
+      background: var(--ground-2);
+      border: 0.5px solid var(--chalk);
+      border-radius: 8px;
       display: grid;
       grid-template-columns: 200px 1fr;
       gap: 2rem;
-      padding: 1.75rem 0;
-      border-bottom: 0.5px solid var(--chalk);
+      padding: 1.75rem 1.6rem;
+      margin-bottom: 0.75rem;
       align-items: start;
     }
-    .principle-group:last-of-type { border-bottom: none; }
+    .principle-group:last-of-type { margin-bottom: 0; }
     .pg-name {
       font-family: 'Bebas Neue', sans-serif;
       font-size: 24px;
@@ -1032,7 +1056,7 @@
       <p class="page-lede">15+ years across start-ups (EatClub and Trendii), big tech (Instacart), consulting (PwC), in-house transformation (Dentsu) and restructuring (Ferrier Hodgson).</p>
     </div>
 
-    <hr/>
+    <div class="spacer-lg"></div>
 
     <div class="label">Three muscles</div>
     <div class="spacer-sm"></div>
@@ -1056,7 +1080,7 @@
 
     </div>
 
-    <hr/>
+    <div class="spacer-lg"></div>
 
     <div class="label">My operating principles</div>
     <div class="spacer-md"></div>
@@ -1088,7 +1112,7 @@
       </ul>
     </div>
 
-    <hr/>
+    <div class="spacer-lg"></div>
 
     <div class="label">Working together</div>
     <div class="spacer-sm"></div>
@@ -1103,7 +1127,7 @@
 
     <p><a href="mailto:benj.kite@gmail.com" class="email-link">benj.kite@gmail.com</a></p>
 
-    <hr/>
+    <div class="spacer-lg"></div>
 
     <div class="cta-row">
       <a href="https://www.linkedin.com/in/ben-kite-90001364/" target="_blank" rel="noopener noreferrer" class="work-cta">Full background on LinkedIn ↗</a>
@@ -1196,11 +1220,12 @@
         const desc = (item.description || '').replace(/<[^>]+>/g, '').trim().slice(0, 140);
         return `
           <a href="${item.link}" target="_blank" rel="noopener noreferrer" class="writing-item">
+            <div class="wi-date">${date}</div>
             <div>
               <div class="wi-title">${item.title}</div>
               <div class="wi-sub">${desc}${desc.length >= 140 ? '...' : ''}</div>
             </div>
-            <div class="wi-date">${date}</div>
+            <div class="wi-arrow">↗</div>
           </a>`;
       }).join('');
     } catch (e) {
