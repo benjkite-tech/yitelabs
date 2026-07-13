@@ -162,10 +162,12 @@
 
     .tab:hover { color: var(--ink); }
 
-    .tab.active {
-      color: var(--ink);
-      border-bottom-color: var(--ink);
-    }
+    .tab.active { color: var(--ink); }
+    .tab.active[data-tab="vision"]    { border-bottom-color: var(--ink); }
+    .tab.active[data-tab="work"]      { border-bottom-color: var(--lavender); }
+    .tab.active[data-tab="lab"]       { border-bottom-color: var(--ember); }
+    .tab.active[data-tab="thinking"]  { border-bottom-color: var(--denim); }
+    .tab.active[data-tab="investing"] { border-bottom-color: var(--harvest); }
 
     .tab-spacer { flex: 1; }
 
