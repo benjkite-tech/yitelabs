@@ -195,6 +195,7 @@
       max-width: 800px;
       margin: 0 auto;
       padding: 5rem 3rem 6rem;
+      overflow: visible;
     }
 
     .tab-panel.active { display: block; }
@@ -440,7 +441,10 @@
       line-height: 1.1;
       color: var(--ink);
       padding-top: 1px;
+      display: flex;
+      align-items: center;
     }
+    .muscle-name .status-dot { width: 8px; height: 8px; margin-right: 10px; top: 0; flex-shrink: 0; }
 
     .muscle-desc {
       font-size: 14px;
@@ -496,11 +500,11 @@
     /* Smaller mark on inner pages */
     .panel-kite {
       position: absolute;
-      top: 2.5rem;
-      right: 0;
-      width: 110px;
+      top: 3.5rem;
+      right: 0.5rem;
+      width: 96px;
       height: auto;
-      opacity: 0.2;
+      opacity: 0.18;
       pointer-events: none;
       z-index: 0;
     }
@@ -969,10 +973,14 @@
     <div class="page-header">
       <div class="label">What I do</div>
       <div class="page-title">STRATEGY,<br>OPS + AI.</div>
-      <p class="page-lede">I love working in high-growth, entrepreneurial, tech businesses. The chaos, the challenge, the new-wave gadgets, the fun. It's just addictive.</p>
+      <p class="page-lede">15+ years across start-ups, big tech, consulting, restructuring and in-house transformations. <strong>I specialise in the gap between strategy and execution.</strong></p>
     </div>
 
-    <p>I do this as a Strategy, Ops and AI Transformation operator. I bring 15+ years experience across start-ups, big tech, consulting, restructuring, and in-house transformations. I specialise in the gap between strategy and execution. Setting direction, launching new things, sorting out ops and fires, aligning teams and making it easy for them to work at speed, and using data to find opportunities and focus on what actually matters.</p>
+    <p>Setting direction, launching new things, sorting out ops and fires, aligning teams and making it easy for them to work at speed, and using data to find opportunities and focus on what actually matters.</p>
+
+    <div class="spacer-sm"></div>
+
+    <p>I love working in high-growth, entrepreneurial, tech businesses. The chaos, the challenge, the new-wave gadgets, the fun. It's just addictive.</p>
 
     <hr/>
 
@@ -982,17 +990,17 @@
     <div class="work-muscles">
 
       <div class="muscle">
-        <div class="muscle-name">Growth ops</div>
+        <div class="muscle-name"><span class="status-dot" style="background:var(--ember);"></span>Growth ops</div>
         <div class="muscle-desc">GTM planning, launching new products and markets, optimising customer funnels and conversion.</div>
       </div>
 
       <div class="muscle">
-        <div class="muscle-name">Internal ops</div>
+        <div class="muscle-name"><span class="status-dot" style="background:var(--moss);"></span>Internal ops</div>
         <div class="muscle-desc">Strategic goal-setting and execution. Aligning and enabling teams. Building functions, systems, and processes.</div>
       </div>
 
       <div class="muscle">
-        <div class="muscle-name">Transformation & AI adoption</div>
+        <div class="muscle-name"><span class="status-dot" style="background:var(--denim);"></span>Transformation &amp; AI</div>
         <div class="muscle-desc">Enabling new capability. Practical AI adoption that fits the actual work. Finding and fixing issues in a structured way. Restructuring for bigger, faster and/or more profitable business.</div>
       </div>
 
